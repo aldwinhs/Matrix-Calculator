@@ -2,7 +2,7 @@ package mtrx;
 
 public class MainClass {
     public static void main(String[] args){
-        matriks tes = new matriks();
+        Matrix tes = new Matrix();
         tes.readMatrix();
         tes.displayMatrix();
     }
