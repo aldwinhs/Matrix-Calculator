@@ -175,4 +175,28 @@ public class Matrix {
             }
         }
     }
+    public void deleteRow(int idxRow) {
+        // Prekondisi: idxRow merupakan index valid effektif
+        /* KAMUS */
+        int i, j;
+        /* ALGORITMA */
+        setRowEff(getRowEff() - 1);
+        for (i = idxRow; i < getRowEff(); i++) {
+            for (j = 0; j < getColEff(); j++) {
+                setElement(i, j, getElement(i + 1, j));
+            }
+        }
+    }
+    public void deleteCol(int idxCol) {
+        // Prekondisi: idxCol merupakan index valid effektif
+        /* KAMUS */
+        int i, j;
+        /* ALGORITMA */
+        setColEff(getColEff() - 1);
+        for (i = 0; i < getRowEff(); i++) {
+            for (j = idxCol; j < getColEff(); j++) {
+                setElement(i, j, getElement(i, j + 1));
+            }
+        }
+    }
 }
