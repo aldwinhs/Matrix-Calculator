@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Matrix {
 
     //inisiasi variabel
-    private int row , col ;
-    private double[][] content;
+    public int row , col ;
+    public double[][] content;
     
     //double supaya bisa untuk pecahan
 
@@ -199,4 +199,17 @@ public class Matrix {
             }
         }
     }
+
+    //cek apakah elemen dalam satu baris = 0 . 
+    //dicek sampai kolom-1, karena hanya digunakan untuk SPL
+    public boolean rowIsZero(int row){
+        int j = 0;
+        boolean flag = true;
+        while (flag & j<this.col-1) {
+            if (this.content[row-1][j] != 0) flag = false;
+            else j++; 
+        }
+        return flag;
+    }
+
 }
