@@ -16,6 +16,6 @@ public class MainClass {
         System.out.print("----------------------------------\n");
         System.out.print("det faktor \n");
         System.out.print("----------------------------------\n");
-        System.out.print(detMatriks.detKofaktor(tes));
+        System.out.print(detMatriks.detKofaktor(tes)+ 1);
     }
 }

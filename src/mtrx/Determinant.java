@@ -6,9 +6,7 @@ public class Determinant {
 
     public double result;
     //konstruktor
-    public Determinant() {
-        this.result = 0;
-    }
+    
 
     // METHOD
 
@@ -18,11 +16,10 @@ public class Determinant {
         /* Menghitung nilai kofaktor matriks */
         int i,j,k,x,y;
         Matrix temp = new Matrix(mainMatrix.row-1, mainMatrix.col -1);
-        double[][] elmt = temp.content;
+        double[][] elmt = mainMatrix.content;
+        if (mainMatrix.row == 1) return elmt[0][0];
 
-        if (temp.row == 1) return elmt[0][0];
-
-        else if (temp.row == 2) return (elmt[0][0]*elmt[1][1] - elmt[0][1] * elmt[1][0]);
+        else if (mainMatrix.row == 2) return (elmt[0][0]*elmt[1][1] - elmt[0][1] * elmt[1][0]);
 
         //jika matriks berukuran 3x3 atau lebih
         else{
@@ -33,7 +30,7 @@ public class Determinant {
                     y=0;
                     for (k=0; k<mainMatrix.row; k++){
                             if (k!=i){
-                            elmt[x][y] = elmt[j][k];
+                            temp.content[x][y] = elmt[j][k];
                             y++;
                         }    
                     }
@@ -46,7 +43,7 @@ public class Determinant {
             }
             return result;
         } 
-            
+        
 
 
     }
