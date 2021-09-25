@@ -116,16 +116,13 @@ public class Matrix {
         /* KAMUS */
         int j;
         /* ALGORITMA */
-        this.multiplyRow(idxRow1, multiplier1);
-        this.multiplyRow(idxRow2, multiplier2);
-
         if (operator) {
             for (j = 0; j < getColEff(); j++) {
-                setElement(idxRow1, j, getElement(idxRow1, j) + getElement(idxRow2, j));
+                setElement(idxRow1, j, getElement(idxRow1, j) * multiplier1 + getElement(idxRow2, j) * multiplier2);
             }
         } else {
             for (j = 0; j < getColEff(); j++) {
-                setElement(idxRow1, j, getElement(idxRow1, j) - getElement(idxRow2, j));
+                setElement(idxRow1, j, getElement(idxRow1, j) * multiplier1 - getElement(idxRow2, j) * multiplier2);
             }
         }
     }
