@@ -18,13 +18,13 @@ public class FileManager {
     public void readFile(String fileName){
         try{
             int nRow = 0 , nCol = 0;
-            Scanner scanFile = new Scanner(new BufferedReader(new FileReader(".../test/" +fileName)));
+            Scanner scanFile = new Scanner(new BufferedReader(new FileReader("test/" +fileName)));
             while(scanFile.hasNextLine()) {
                 nRow++;                                                     //hitung jumlah baris
                 nCol = scanFile.nextLine().trim().split(" ").length;        //hitung kolom dengan pemisah elemen matriks dengan spasi
                 
 
-            Scanner FileToMatrix = new Scanner(new BufferedReader(new FileReader(".../test/"+fileName)));
+            Scanner FileToMatrix = new Scanner(new BufferedReader(new FileReader("test/"+fileName)));
             matriksForm.setRowEff(nRow);
             matriksForm.setColEff(nCol);
             //Konstruktor matriks dari file
