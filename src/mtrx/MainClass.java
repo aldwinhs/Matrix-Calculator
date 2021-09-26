@@ -6,16 +6,18 @@ public class MainClass {
         tes.readMatrix();
         tes.displayMatrix();
 
-        System.out.print("----------------------------------\n");
-        System.out.print("coba buat matriks reduksi\n");
-        System.out.print("----------------------------------\n");
-        SPL tesGauss = new SPL();
-        tesGauss.Gauss(tes).displayMatrix();;
-        System.out.print("----------------------------------\n");
+        // System.out.print("----------------------------------\n");
+        // System.out.print("coba buat matriks reduksi\n");
+        // System.out.print("----------------------------------\n");
+        // SPL tesGauss = new SPL();
+        // tesGauss.Gauss(tes).displayMatrix();;
+        // System.out.print("----------------------------------\n");
         Determinant detMatriks = new Determinant();
         System.out.print("----------------------------------\n");
         System.out.print("det faktor \n");
         System.out.print("----------------------------------\n");
-        System.out.print(detMatriks.detKofaktor(tes)+ 1);
+        System.out.print(detMatriks.detKofaktor(tes));
+        System.out.println();
+        System.out.print(detMatriks.detKofaktor1(tes));
     }
 }
