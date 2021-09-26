@@ -54,21 +54,6 @@ public class Determinant {
         double det;
         int j;
         /* ALGORTIMA */
-        // det = 0;
-        // for (j = 0; j < matrix.getColEff(); j++) {
-        //     minorMatrix = new Matrix(matrix);
-        //     minorMatrix.deleteRow(0);
-        //     minorMatrix.deleteCol(j);
-        //     minorMatrix.displayMatrix();
-        //     System.out.println();
-        //     matrix.displayMatrix();
-        //     System.out.println();
-            
-        //     // det += (j % 2 == 0 ? 1 : -1) * minorMatrix.getElement(0, j) * detKofaktor(minorMatrix);
-        //     // System.out.println(det);
-        // }
-        // return det;
-        
         if (matrix.getColEff() == 1) return matrix.getElement(0, 0);
         else {
             det = 0;
