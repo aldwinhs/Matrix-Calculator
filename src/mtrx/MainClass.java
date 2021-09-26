@@ -5,19 +5,24 @@ public class MainClass {
         Matrix tes = new Matrix();
         tes.readMatrix();
         tes.displayMatrix();
-
-        // System.out.print("----------------------------------\n");
-        // System.out.print("coba buat matriks reduksi\n");
-        // System.out.print("----------------------------------\n");
-        // SPL tesGauss = new SPL();
-        // tesGauss.Gauss(tes).displayMatrix();;
-        // System.out.print("----------------------------------\n");
         Determinant detMatriks = new Determinant();
+        SPL tesGauss = new SPL();
+
+
         System.out.print("----------------------------------\n");
-        System.out.print("det faktor \n");
+        System.out.print("coba buat matriks reduksi\n");
+        tesGauss.Gauss(tes).displayMatrix();
         System.out.print("----------------------------------\n");
+        System.out.print("det reduksi baris : ");
+        System.out.print(detMatriks.detReduksiBaris(tes));
+        
+        System.out.print("\n----------------------------------\n");
+        System.out.print("det faktor : ");
         System.out.print(detMatriks.detKofaktor(tes));
-        System.out.println();
-        System.out.print(detMatriks.detKofaktor1(tes));
+
+        
     }
 }
+
+
+
