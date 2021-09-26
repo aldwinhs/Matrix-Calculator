@@ -25,7 +25,12 @@ public class Matrix {
     public Matrix(Matrix matrix) {
         this.row = matrix.row;
         this.col = matrix.col;
-        this.content = matrix.content;
+        this.content = new double[matrix.row][matrix.col];
+        for (int i = 0; i < matrix.row; i++) {
+            for (int j = 0; j < matrix.col; j++) {
+                this.content[i][j] = matrix.content[i][j];
+            }
+        }
     }
 
     // SELEKTOR
