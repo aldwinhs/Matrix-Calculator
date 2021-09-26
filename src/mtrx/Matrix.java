@@ -210,7 +210,7 @@ public class Matrix {
     public boolean rowIsZero(int row){
         int j = 0;
         boolean flag = true;
-        while (flag & j<this.col-1) {
+        while (flag && j<this.col-1) {
             if (this.content[row-1][j] != 0) flag = false;
             else j++; 
         }
