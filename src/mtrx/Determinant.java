@@ -33,36 +33,42 @@ public class Determinant {
         double result = 1;
         int count = 0;
 
-            double elmt[][] = matriks.content;
-
+            Matrix TempMatrix = new Matrix(matriks);
+            
             for (int k = 0; k<nRow; k++){
-                int i_max = k;
-                double v_max =  elmt[k][k];
+                int row_max= k;      //row yang dijadikan prioritas
+                double elmt_max =  TempMatrix.getElement(k, k);
 
                 for (int i = k+1; i<nRow; i++){
-                    if (Math.abs(elmt[i][k]) > v_max) {
-                        v_max = elmt[i][k];
-                        i_max = i;
+                    if (Math.abs(TempMatrix.getElement(i, k)) > elmt_max) {
+                        elmt_max = TempMatrix.getElement(i, k);
+                        row_max= i;
+                        
+                        
                     }
                 }
 
-                if (i_max != k) {
-                    matriks.swapRow( k, i_max);
+                if (row_max != k) {
+                    TempMatrix.swapRow( k, row_max);
                     count++;
+                   
+                    
                 }
                 for (int i = k+1 ; i<nRow; i++){
 
                     //multiplier 2 sebagai koefisien baris pengurang
-                    double multiplier2= elmt[i][k] / elmt[k][k];
+                    double multiplier2= TempMatrix.getElement(i, k) / TempMatrix.getElement(k, k);
                     // pengurangan baris bawah dengan baris atas
-                    matriks.plusMinusRow(i, k, 1, multiplier2, false);
+                    TempMatrix.plusMinusRow(i, k, 1, multiplier2, false);
                     // bentuk segitiga bawah
-                    elmt[i][k] = 0;
+                    TempMatrix.setElement(i, k, 0) ;
+                    
+                  
                 }
             }
         //Perkalian diagonal Utama untuk menghasilkan determinan
-        for (int i = 0; i< matriks.row ; i++){
-                result *= matriks.content[i][i];
+        for (int i = 0; i< TempMatrix.row ; i++){
+                result *= TempMatrix.content[i][i];
         }
         if (count%2 == 1)  return -result;
         else  return result;
