@@ -14,8 +14,8 @@ public class Matrix {
 
     // KONSTRUKTOR
     public Matrix() {
-        row = 1;
-        col = 0;
+        this.row = 100;
+        this.col = 100;
     }
     public Matrix(int nRow, int nCol) {
         this.row = nRow;

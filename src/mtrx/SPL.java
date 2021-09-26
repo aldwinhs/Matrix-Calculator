@@ -1,6 +1,6 @@
 package mtrx;
 
-import java.lang.*;
+import java.lang.Math;
 
 public class SPL {
     
