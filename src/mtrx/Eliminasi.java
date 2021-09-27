@@ -7,7 +7,7 @@ public class Eliminasi {
     /* KONSTRUKTOR */
 
     /* METHOD */
-    public Matrix metodeGauss(Matrix matrix) {
+    public Matrix getMatrixEselonBaris(Matrix matrix) {
         /* KAMUS */
         Matrix matrixHasil = new Matrix(matrix);
         int[] lenght = new int[matrix.getRowEff()];
@@ -62,8 +62,8 @@ public class Eliminasi {
         return matrixHasil;
     }
 
-    public Matrix metodeGaussJordan(Matrix matrix) {
-        Matrix matrixHasil = new Matrix(metodeGauss(matrix));
+    public Matrix getMatrixEselonBarisTereduksi(Matrix matrix) {
+        Matrix matrixHasil = new Matrix(getMatrixEselonBaris(matrix));
 
         int i,j;
         double koef;
