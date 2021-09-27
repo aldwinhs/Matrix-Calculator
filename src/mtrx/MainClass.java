@@ -3,12 +3,12 @@ package mtrx;
 public class MainClass {
     public static void main(String[] args){
         Matrix tes = new Matrix();
-        tes.readMatrix();
+        //tes.readMatrix();
 
-        // FileManager tesFile = new FileManager();
-        // tesFile.readFile("tes.txt");
+        FileManager tesFile = new FileManager();
+        tesFile.readFile("tes.txt");
         // tesFile.matriksForm.addIdentity();
-        // tesFile.matriksForm.displayMatrix();
+        tesFile.matriksForm.displayMatrix();
 
         // tesFile.matriksForm.displayMatrix();
         // Determinant detMatriks = new Determinant();
@@ -43,9 +43,25 @@ public class MainClass {
         //tesFile.matriksForm.displayMatrix();
         
         Eliminasi tesEliminasi = new Eliminasi();
-        tesEliminasi.metodeinverse(tes).displayMatrix();
+        SPL solusiFile = new SPL();
+
+        System.out.print("\n----Matriks tereduksi baris\n");
+        tesEliminasi.getMatrixEselonBarisTereduksi(tesFile.matriksForm).displayMatrix();
+
+        
+        double[] x =solusiFile.BackwardSubstitution(tesFile.matriksForm);
+        for (int i = 0; i<x.length; i++){
+            System.out.print("solusi x : "+ x[i]) ;
+            System.out.print("\n") ;
+
+
+        }
+        
         // tes.addIdentity();
         // tes.displayMatrix();
+    }
+        
+            */
     }
 }
 
