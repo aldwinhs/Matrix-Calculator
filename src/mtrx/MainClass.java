@@ -49,21 +49,17 @@ public class MainClass {
         tesEliminasi.getMatrixEselonBarisTereduksi(tesFile.matriksForm).displayMatrix();
 
         
-        double[] x =solusiFile.BackwardSubstitution(tesFile.matriksForm);
+        double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBaris(tesFile.matriksForm));
         for (int i = 0; i<x.length; i++){
             System.out.print("solusi x : "+ x[i]) ;
-            System.out.print("\n") ;
-
-
+            System.out.print("\n");
         }
         
-        // tes.addIdentity();
-        // tes.displayMatrix();
     }
+}    
         
-            */
-    }
-}
+    
+
 
 
 
