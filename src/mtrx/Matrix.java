@@ -3,6 +3,8 @@ package mtrx;
 
 import java.util.Scanner;
 
+import javax.print.event.PrintEvent;
+
 
 public class Matrix {
 
@@ -14,8 +16,8 @@ public class Matrix {
 
     // KONSTRUKTOR
     public Matrix() {
-        this.row = 100;
-        this.col = 100;
+        this.row = 0;
+        this.col = 0;
     }
     public Matrix(int nRow, int nCol) {
         this.row = nRow;
@@ -54,15 +56,29 @@ public class Matrix {
     }
     public void setColEff(int col) {
         /* KAMUS */
-
+        Matrix temp = new Matrix(this);
         /* ALGORITMA */
         this.col = col;
+        this.content = new double[this.row][this.col];
+
+        for (int i = 0; i < temp.getRowEff(); i++) {
+            for (int j = 0; j < temp.getColEff(); j++) {
+                this.content[i][j] = temp.content[i][j];
+            }
+        }
     }
     public void setRowEff(int row) {
         /* KAMUS */
-
+        Matrix temp = new Matrix(this);
         /* ALGORITMA */
         this.row = row;
+        this.content = new double[this.row][this.col];
+
+        for (int i = 0; i < temp.getRowEff(); i++) {
+            for (int j = 0; j < temp.getColEff(); j++) {
+                this.content[i][j] = temp.content[i][j];
+            }
+        }
     }
 
     // INPUT/OUTPUT
@@ -141,10 +157,14 @@ public class Matrix {
         /* KAMUS */
         int i, j;
         /* ALGORITMA */
+        System.out.println(getColEff());
         setColEff(2 * getColEff());
+        System.out.println(getColEff());
         for (i = 0; i < getRowEff(); i++) {
             for (j = getColEff() / 2 ; j < getColEff(); j++) {
+                // System.out.println(j);
                 if (i == j - getColEff() / 2) {
+                    System.out.println(getColEff());
                     setElement(i, j, 1);
                 } else {
                     setElement(i, j, 0);
