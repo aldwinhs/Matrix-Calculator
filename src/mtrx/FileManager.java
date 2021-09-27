@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.util.Scanner;
 
 
-//C:/Kuliah/SEMESTER 3/Algeo/Tubes/test/"
 
 public class FileManager {
     

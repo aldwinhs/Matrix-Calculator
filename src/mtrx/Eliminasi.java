@@ -40,7 +40,7 @@ public class Eliminasi {
             matrixHasil.swapRow(i, min_idx);
         }
         for (i = 0; i < matrixHasil.getRowEff(); i++) {
-            System.out.println(lenght[i]);
+            //System.out.println(lenght[i]);
         }
 
         for (i = 0; i < matrixHasil.getRowEff(); i++) {
@@ -61,4 +61,33 @@ public class Eliminasi {
         }
         return matrixHasil;
     }
+
+    public Matrix metodeGaussJordan(Matrix matrix) {
+        Matrix matrixHasil = new Matrix(metodeGauss(matrix));
+
+        int i,j;
+        double koef;
+
+        for (i = 1; i< matrixHasil.getRowEff(); i++){
+            koef = 0;
+            if (matrixHasil.getElement(i, i) == 1){
+                for (j =0; j<i; j++){
+                    koef = matrixHasil.getElement(j, i);
+                    matrixHasil.plusMinusRow(j, i, 1, koef, false);
+                }
+            }
+        }
+        return matrixHasil;
+    }
+
+
+    public Matrix metodeinverse(Matrix matrix){
+        Matrix matrixHasil = new Matrix(matrix);
+        int nRow = matrixHasil.getRowEff();
+        int nCol = matrixHasil.getColEff();
+
+        matrixHasil.addIdentity();
+        return matrixHasil;
+    }
+        
 }

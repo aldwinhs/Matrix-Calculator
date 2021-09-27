@@ -6,6 +6,7 @@ public class MainClass {
 
         FileManager tesFile = new FileManager();
         tesFile.readFile("tes.txt");
+
         tesFile.matriksForm.displayMatrix();
         Determinant detMatriks = new Determinant();
         // SPL tesGauss = new SPL();
@@ -23,11 +24,20 @@ public class MainClass {
         // System.out.print(detMatriks.detKofaktor(tes));
         //System.out.println("\nDeterminan : ");
         //System.out.println(detMatriks.detReduksiBaris(tesFile.matriksForm));
+       
         
         Eliminasi eliminasi = new Eliminasi();
+        System.out.print("\n----------------------------------\n");
+        
         eliminasi.metodeGauss(tesFile.matriksForm).displayMatrix();;
         System.out.print("\n----------------------------------\n");
-        tesFile.matriksForm.displayMatrix();
+        System.out.print("----------------------------------\n");
+        System.out.print("-----------------Gauss JORDAN-----------------\n");
+        eliminasi.metodeGaussJordan(tesFile.matriksForm).displayMatrix();
+        System.out.print("\n----------------------------------\n");
+        
+        System.out.print("\n----------------------------------\n");
+        //tesFile.matriksForm.displayMatrix();
         
         
 
