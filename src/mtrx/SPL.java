@@ -85,4 +85,19 @@ public class SPL {
     }
 
 
+    public double[] BackwardSubstitution(Matrix matrix) {
+        int i,j,k;
+        double [] solusi = new double[matrix.getColEff()-1];
+        for ( i = matrix.getRowEff()-1; i >= 0; i--) {
+            for ( j = matrix.getColEff()-2; j >= 0 ; j--) {
+                solusi[j] = matrix.getElement(i, matrix.getColEff()-1);
+                for ( k = matrix.getColEff()-2; k > j; k--) {
+                    solusi [j] -= matrix.getElement(i, k) * solusi[k];
+                }
+            }
+        }
+
+        return solusi;
+    }
+
 }
