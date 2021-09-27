@@ -90,7 +90,6 @@ public class SPL {
         double [] solusi = new double[matrix.getColEff()-1];
         
 
-        //i =3
         for ( j = matrix.getColEff()-2; j >= 0 ; j--) {
             solusi[j] = matrix.getElement(j, matrix.getColEff()-1);
             for ( k = matrix.getColEff()-2; k > j; k--) {
