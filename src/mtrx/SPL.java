@@ -92,7 +92,7 @@ public class SPL {
             for ( j = matrix.getColEff()-2; j >= 0 ; j--) {
                 solusi[j] = matrix.getElement(i, matrix.getColEff()-1);
                 for ( k = matrix.getColEff()-2; k > j; k--) {
-                    solusi [j] -= matrix.getElement(i, k) * solusi[k];
+                    solusi [j] -= (matrix.getElement(i, k) * solusi[k]);
                 }
             }
         }
