@@ -3,6 +3,7 @@ package mtrx;
 
 import java.util.Scanner;
 
+import javax.management.MBeanServerInvocationHandler;
 import javax.print.event.PrintEvent;
 
 
@@ -57,12 +58,19 @@ public class Matrix {
     public void setColEff(int col) {
         /* KAMUS */
         Matrix temp = new Matrix(this);
+        int minCol;
         /* ALGORITMA */
         this.col = col;
         this.content = new double[this.row][this.col];
 
+        if (this.col < temp.col) {
+            minCol = this.col;
+        } else {
+            minCol = temp.col;
+        }
+
         for (int i = 0; i < temp.getRowEff(); i++) {
-            for (int j = 0; j < temp.getColEff(); j++) {
+            for (int j = 0; j < minCol; j++) {
                 this.content[i][j] = temp.content[i][j];
             }
         }
@@ -70,11 +78,18 @@ public class Matrix {
     public void setRowEff(int row) {
         /* KAMUS */
         Matrix temp = new Matrix(this);
+        int minRow;
         /* ALGORITMA */
         this.row = row;
         this.content = new double[this.row][this.col];
 
-        for (int i = 0; i < temp.getRowEff(); i++) {
+        if (this.row < temp.row) {
+            minRow = this.row;
+        } else {
+            minRow = temp.row;
+        }
+
+        for (int i = 0; i < minRow; i++) {
             for (int j = 0; j < temp.getColEff(); j++) {
                 this.content[i][j] = temp.content[i][j];
             }
@@ -157,14 +172,11 @@ public class Matrix {
         /* KAMUS */
         int i, j;
         /* ALGORITMA */
-        System.out.println(getColEff());
         setColEff(2 * getColEff());
-        System.out.println(getColEff());
         for (i = 0; i < getRowEff(); i++) {
             for (j = getColEff() / 2 ; j < getColEff(); j++) {
                 // System.out.println(j);
                 if (i == j - getColEff() / 2) {
-                    System.out.println(getColEff());
                     setElement(i, j, 1);
                 } else {
                     setElement(i, j, 0);
@@ -205,24 +217,24 @@ public class Matrix {
         /* KAMUS */
         int i, j;
         /* ALGORITMA */
-        setRowEff(getRowEff() - 1);
-        for (i = idxRow; i < getRowEff(); i++) {
+        for (i = idxRow; i < getRowEff() - 1; i++) {
             for (j = 0; j < getColEff(); j++) {
                 setElement(i, j, getElement(i + 1, j));
             }
         }
+        setRowEff(getRowEff() - 1);
     }
     public void deleteCol(int idxCol) {
         // Prekondisi: idxCol merupakan index valid effektif
         /* KAMUS */
         int i, j;
         /* ALGORITMA */
-        setColEff(getColEff() - 1);
         for (i = 0; i < getRowEff(); i++) {
-            for (j = idxCol; j < getColEff(); j++) {
+            for (j = idxCol; j < getColEff() - 1; j++) {
                 setElement(i, j, getElement(i, j + 1));
             }
         }
+        setColEff(getColEff() - 1);
     }
 
     //cek apakah elemen dalam satu baris = 0 . 
