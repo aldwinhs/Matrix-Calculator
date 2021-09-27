@@ -65,15 +65,20 @@ public class Eliminasi {
     public Matrix getMatrixEselonBarisTereduksi(Matrix matrix) {
         Matrix matrixHasil = new Matrix(getMatrixEselonBaris(matrix));
 
-        int i,j;
-        double koef;
+        int i,j,k;
+        boolean satuNotFound;
 
         for (i = 1; i< matrixHasil.getRowEff(); i++){
-            koef = 0;
-            if (matrixHasil.getElement(i, i) == 1){
-                for (j =0; j<i; j++){
-                    koef = matrixHasil.getElement(j, i);
-                    matrixHasil.plusMinusRow(j, i, 1, koef, false);
+            j = 0;
+            satuNotFound = true;
+            while (satuNotFound && j<matrixHasil.getColEff()) {
+                if (matrixHasil.getElement(i, j) == 1) {
+                    satuNotFound = false;
+                    for ( k = 0; k < i; k++) {
+                        matrixHasil.plusMinusRow(k, j, 1, matrixHasil.getElement(k, j), false);
+                    }
+                } else {
+                    j++;
                 }
             }
         }
