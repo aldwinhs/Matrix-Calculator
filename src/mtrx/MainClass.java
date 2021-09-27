@@ -29,11 +29,11 @@ public class MainClass {
         Eliminasi eliminasi = new Eliminasi();
         System.out.print("\n----------------------------------\n");
         
-        eliminasi.metodeGauss(tesFile.matriksForm).displayMatrix();;
+        eliminasi.getMatrixEselonBaris(tesFile.matriksForm).displayMatrix();;
         System.out.print("\n----------------------------------\n");
         System.out.print("----------------------------------\n");
         System.out.print("-----------------Gauss JORDAN-----------------\n");
-        eliminasi.metodeGaussJordan(tesFile.matriksForm).displayMatrix();
+        eliminasi.getMatrixEselonBarisTereduksi(tesFile.matriksForm).displayMatrix();
         System.out.print("\n----------------------------------\n");
         
         System.out.print("\n----------------------------------\n");
