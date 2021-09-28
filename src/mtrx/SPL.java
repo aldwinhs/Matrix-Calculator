@@ -1,122 +1,63 @@
 package mtrx;
 
-import java.lang.Math;
 
 public class SPL {
     
-    //Method untuk menghasilkan Matrik tereduksi dengan metode gauss
-    public Matrix Gauss(Matrix matriks){
-        int nRow = matriks.row;
-        
-        
-
-            Matrix TempMatrix = new Matrix(matriks);
-            
-            for (int k = 0; k<nRow; k++){
-                int row_max= k;      //row yang dijadikan prioritas
-                double elmt_max =  TempMatrix.getElement(k, k);
-
-                for (int i = k+1; i<nRow; i++){
-                    if (Math.abs(TempMatrix.getElement(i, k)) > elmt_max) {
-                        elmt_max = TempMatrix.getElement(i, k);
-                        row_max= i;
-                        
-                        
-                    }
-                }
-
-                if (row_max != k) {
-                    TempMatrix.swapRow( k, row_max);
-                    
-                   
-                    
-                }
-                for (int i = k+1 ; i<nRow; i++){
-
-                    //multiplier 2 sebagai koefisien baris pengurang
-                    double multiplier2= TempMatrix.getElement(i, k) / TempMatrix.getElement(k, k);
-                    // pengurangan baris bawah dengan baris atas
-                    TempMatrix.plusMinusRow(i, k, 1, multiplier2, false);
-                    // bentuk segitiga bawah
-                    TempMatrix.setElement(i, k, 0) ;
-                    
-                  
-                }
-            }
-        return TempMatrix;
-        
-    }
-
-    
-    public void SolveGauss(Matrix matriks){
-        Matrix result = Gauss(matriks);
-        double elmt[][] = result.content;
-        
-        //Kasus 1 : Tidak ada solusi
-        if (result.rowIsZero(result.row) && elmt[result.row-1][result.col-2] !=0 ){
-            System.out.print("SPL Tidak memiliki solusi!");
-        }
-
-       
-        else{
-            double solusi [] = new double[result.col-1];
-            
-            //Cek apakah Jumlah persamaan (baris) cukup untuk mendapatkan solusi unik
-            int RowRed=0;
-            for (int j=0 ; j<result.col; j++){
-                if (result.rowIsZero(j)) RowRed++;
-            }
-
-            //kasus 2 : solusi unik
-            if (RowRed >= result.col-1){
-                for (int i = RowRed-1; i>=0; i--){
-                    
-                    for (int j=result.col-2 ; j>= 0  ; j--){
-                        solusi[i] += solusi[j] * elmt[i][j];
-                    }
-                }
-            }
-
-            
-        } 
-
-        
-
-    }
-
-
-    public double[] BackwardSubstitution(Matrix matrix) {
+    public double[] BackwardSubstitution(Matrix matriks) {
         int j,k;
-        double [] solusi = new double[matrix.getColEff()-1];
+        double [] solusi = new double[matriks.getColEff()-1];
         
 
-        for ( j = matrix.getColEff()-2; j >= 0 ; j--) {
-            solusi[j] = matrix.getElement(j, matrix.getColEff()-1);
-            for ( k = matrix.getColEff()-2; k > j; k--) {
-                solusi [j] -= matrix.getElement(j, k) * solusi[k];
+        for ( j = matriks.getColEff()-2; j >= 0 ; j--) {
+            solusi[j] = matriks.getElement(j, matriks.getColEff()-1);
+            for ( k = matriks.getColEff()-2; k > j; k--) {
+                solusi [j] -= matriks.getElement(j, k) * solusi[k];
                 }
             }
 
         return solusi;
     }
+   
 
-    public double[] cramerMethod(Matrix matrix) {
+    public double[] cramerMethod(Matrix matriks) {
         /* KAMUS */
-        Matrix matrixD = new Matrix(matrix);
-        Matrix matrixDx;
+        Matrix matriksD = new Matrix(matriks);
+        Matrix matriksDx;
         Determinant determinant = new Determinant();
-        double[] solusi = new double[matrix.getRowEff()];
+        double[] solusi = new double[matriks.getRowEff()];
         /* ALGORITMA */
-        matrixD.deleteCol(matrixD.getLastIdxCol());
+        matriksD.deleteCol(matriksD.getLastIdxCol());
 
-        for (int i = 0; i < matrix.getRowEff(); i++) {
-            matrixDx = new Matrix(matrix);
-            matrixDx.swapCol(i, matrixDx.getLastIdxCol());
-            matrixDx.deleteCol(matrixDx.getLastIdxCol());
-            solusi[i] = determinant.detKofaktor(matrixDx) / determinant.detKofaktor(matrixD);
+        for (int i = 0; i < matriks.getRowEff(); i++) {
+            matriksDx = new Matrix(matriks);
+            matriksDx.swapCol(i, matriksDx.getLastIdxCol());
+            matriksDx.deleteCol(matriksDx.getLastIdxCol());
+            solusi[i] = determinant.detKofaktor(matriksDx) / determinant.detKofaktor(matriksD);
         }
         
         return solusi;
+    }
+
+    public double[] inverseMethod(Matrix matriks){
+        int i;
+        double[] solusi = new double[matriks.getRowEff()];
+        Matrix konstan = new Matrix(matriks.row, 1);
+        Matrix temp = new Matrix(matriks);
+
+        //Copy elemen pada kolom terakhir matriks ke konstang=
+        for (i =0; i<matriks.row; i++){
+            konstan.setElement(i, 1, matriks.getElement(i, matriks.getLastIdxCol()));
+        }
+
+        //Cari matriks yang merepresentasikan peubah
+        temp.deleteCol(temp.getLastIdxCol());
+        Eliminasi tempInverse = new Eliminasi();
+
+        for (i = 0; i<temp.getRowEff(); i++){
+            solusi[i] = tempInverse.metodeinverse(temp).multiplyMatrix(konstan).getElement(i, 1);
+        }
+        return solusi;
+
     }
     
 
