@@ -21,6 +21,9 @@ public class MainClass {
         NewLine();
         //InputKeyboard.displayMatrix();
         
+        //tes swap
+       
+
         
        /* Ujicoba Eliminasi cara Gauss  dan Gauss Jordan dengan inputFile*/
        Eliminasi tesEliminasi = new Eliminasi();
@@ -35,8 +38,8 @@ public class MainClass {
        SPL solusiFile = new SPL();
        //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm));
        //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm));
-       //double[] x =solusiFile.cramerMethod(InputFile.matriksForm);
-       double[] x =solusiFile.inverseMethod(InputFile.matriksForm);
+       double[] x =solusiFile.cramerMethod(InputFile.matriksForm);
+       //double[] x =solusiFile.inverseMethod(InputFile.matriksForm);
        NewLine();
        
         for (int i = 0; i<x.length; i++){
