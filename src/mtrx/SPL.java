@@ -44,17 +44,17 @@ public class SPL {
         Matrix konstan = new Matrix(matriks.row, 1);
         Matrix temp = new Matrix(matriks);
 
-        //Copy elemen pada kolom terakhir matriks ke konstang=
+        //Copy elemen pada kolom terakhir matriks ke konstan
         for (i =0; i<matriks.row; i++){
-            konstan.setElement(i, 1, matriks.getElement(i, matriks.getLastIdxCol()));
+            konstan.setElement(i, 0, matriks.getElement(i, matriks.getLastIdxCol()));
         }
-
         //Cari matriks yang merepresentasikan peubah
         temp.deleteCol(temp.getLastIdxCol());
+        
         Eliminasi tempInverse = new Eliminasi();
-
+        //tempInverse.metodeinverse(temp).multiplyMatrix(konstan).displayMatrix();
         for (i = 0; i<temp.getRowEff(); i++){
-            solusi[i] = tempInverse.metodeinverse(temp).multiplyMatrix(konstan).getElement(i, 1);
+            solusi[i] = tempInverse.metodeinverse(temp).multiplyMatrix(konstan).getElement(i, 0);
         }
         return solusi;
 
