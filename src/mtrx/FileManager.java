@@ -2,7 +2,9 @@ package mtrx;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.util.Scanner;
 
 
@@ -45,6 +47,48 @@ public class FileManager {
             e.printStackTrace();
         }
         
+    }
+
+    public void writeMatrixFile(String fileName, Matrix matriks){
+        try{
+            BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
+            int i,j;
+            
+            for(i=0; i <matriks.row; i++){
+                for( j =0; j<matriks.col; j++){
+                    if (j != matriks.getLastIdxCol()) fileWriter.write(String.valueOf(matriks.getElement(i, j))+ " ");
+                    else fileWriter.write(String.valueOf(matriks.getElement(i, j))+ " ");
+                }
+                fileWriter.newLine();
+            }
+            fileWriter.flush();
+            fileWriter.close();
+        }
+        catch(Exception e){
+            System.out.println("Error");
+            e.printStackTrace();
+        }
+
+    }
+
+    public void writeMatrixFile(String fileName, double[] solusi){
+        try{
+            BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
+            int i;
+            
+            for(i=0; i <solusi.length; i++){
+                fileWriter.write(String.valueOf("x" + (i+1 + ": " + solusi[i])));
+                fileWriter.newLine();
+            }
+            fileWriter.flush();
+            fileWriter.close();
+            
+        }
+        catch(Exception e){
+            System.out.println("Error");
+            e.printStackTrace();
+        }
+
     }
         
 

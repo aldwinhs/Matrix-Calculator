@@ -1,4 +1,5 @@
 package mtrx;
+import java.util.Scanner;
 
 public class MainClass {
 
@@ -7,8 +8,12 @@ public class MainClass {
     }
 
     public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        
+
         /* Inisiasi */
         FileManager InputFile= new FileManager();
+        String fileName;
         //Matrix InputKeyboard = new Matrix();
 
         /* ujicoba inputan (File & Keyboard) */
@@ -25,28 +30,32 @@ public class MainClass {
        
 
         
-       /* Ujicoba Eliminasi cara Gauss  dan Gauss Jordan dengan inputFile*/
-       Eliminasi tesEliminasi = new Eliminasi();
-       tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm).displayMatrix();
-       NewLine();
-       tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm).displayMatrix();
-       NewLine();
-       tesEliminasi.metodeinverse(InputFile.matriksForm).displayMatrix();
-       NewLine();
+        /* Ujicoba Eliminasi cara Gauss  dan Gauss Jordan dengan inputFile*/
+        Eliminasi tesEliminasi = new Eliminasi();
+        tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm).displayMatrix();
+        NewLine();
+        tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm).displayMatrix();
+        NewLine();
+        tesEliminasi.metodeinverse(InputFile.matriksForm).displayMatrix();
+        NewLine();
 
-       /*ujicoba SPL dengan 4 metode */
-       SPL solusiFile = new SPL();
-       //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm));
-       //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm));
-       double[] x =solusiFile.cramerMethod(InputFile.matriksForm);
-       //double[] x =solusiFile.inverseMethod(InputFile.matriksForm);
-       NewLine();
+        /*ujicoba SPL dengan 4 metode */
+        SPL solusiFile = new SPL();
+        //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm));
+        //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm));
+        double[] x =solusiFile.cramerMethod(InputFile.matriksForm);
+        //double[] x =solusiFile.inverseMethod(InputFile.matriksForm);
+        NewLine();
        
         for (int i = 0; i<x.length; i++){
             System.out.print("solusi x"+ (i+1) + " : "+ x[i]) ;
             System.out.print("\n");
         }
         
+        fileName = scan.next();
+        InputFile.writeMatrixFile(fileName, x);
+
+        scan.close();
     }
 }    
         
