@@ -144,7 +144,7 @@ public class Matrix {
         int j;
         double temp;
         /* ALGORITMA */
-        for (j = 0; j < getColEff(); j++) {
+        for (j = 0; j < getRowEff(); j++) {
             temp = getElement(j, idxCol1);
             setElement(j, idxCol1, getElement(j, idxCol2));
             setElement(j, idxCol2, temp);
@@ -273,8 +273,9 @@ public class Matrix {
         for (i=0 ; i<MatrixHasil.row; i++){
             for (j=0 ; j<MatrixHasil.col; j++){
                 temp =0;
-                for(k=0 ; k<matriks.col;k++){
-                    temp += this.getElement(i, k) * matriks.getElement(k, j);
+                for(k=0 ; k<matriks.row;k++){
+                    temp += this.getElement(i, k) * matriks.getElement(k, j); 
+                    
                 }
                 MatrixHasil.setElement(i, j, temp);
             }
