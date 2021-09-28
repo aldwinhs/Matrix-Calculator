@@ -1,57 +1,46 @@
 package mtrx;
 
 public class MainClass {
+
+    public static void NewLine(){
+        System.out.println("--------------------------------------------------------");
+    }
+
     public static void main(String[] args){
-        Matrix tes = new Matrix();
+        /* Inisiasi */
+        FileManager InputFile= new FileManager();
+        //Matrix InputKeyboard = new Matrix();
+
+        /* ujicoba inputan (File & Keyboard) */
+        //InputFile.readFile("tesGauss.txt");
+        InputFile.readFile("tesInverse.txt");
         //tes.readMatrix();
 
-        FileManager tesFile = new FileManager();
-        tesFile.readFile("tes.txt");
-        // tesFile.matriksForm.addIdentity();
-        tesFile.matriksForm.displayMatrix();
-
-        // tesFile.matriksForm.displayMatrix();
-        // Determinant detMatriks = new Determinant();
-        // SPL tesGauss = new SPL();
-
-
-        // System.out.print("----------------------------------\n");
-        // System.out.print("coba buat matriks reduksi\n");
-        // tesGauss.Gauss(tes).displayMatrix();
-        // System.out.print("----------------------------------\n");
-        // System.out.print("det reduksi baris : ");
+        /* ujicoba output matrix */
+        InputFile.matriksForm.displayMatrix();
+        NewLine();
+        //InputKeyboard.displayMatrix();
         
         
-        // System.out.print("\n----------------------------------\n");
-        // System.out.print("det faktor : ");
-        // System.out.print(detMatriks.detKofaktor(tes));
-        //System.out.println("\nDeterminan : ");
-        //System.out.println(detMatriks.detReduksiBaris(tesFile.matriksForm));
+       /* Ujicoba Eliminasi cara Gauss  dan Gauss Jordan dengan inputFile*/
+       Eliminasi tesEliminasi = new Eliminasi();
+       tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm).displayMatrix();
+       NewLine();
+       tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm).displayMatrix();
+       NewLine();
+       tesEliminasi.metodeinverse(InputFile.matriksForm).displayMatrix();
+       NewLine();
+
+       /*ujicoba SPL dengan 4 metode */
+       SPL solusiFile = new SPL();
+       //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm));
+       //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm));
+       //double[] x =solusiFile.cramerMethod(InputFile.matriksForm);
+       double[] x =solusiFile.inverseMethod(InputFile.matriksForm);
+       NewLine();
        
-        
-        // Eliminasi eliminasi = new Eliminasi();
-        // System.out.print("\n----------------------------------\n");
-        
-        // eliminasi.getMatrixEselonBaris(tesFile.matriksForm).displayMatrix();;
-        // System.out.print("\n----------------------------------\n");
-        // System.out.print("----------------------------------\n");
-        // System.out.print("-----------------Gauss JORDAN-----------------\n");
-        // eliminasi.getMatrixEselonBarisTereduksi(tesFile.matriksForm).displayMatrix();
-        // System.out.print("\n----------------------------------\n");
-        
-        // System.out.print("\n----------------------------------\n");
-        //tesFile.matriksForm.displayMatrix();
-        
-        Eliminasi tesEliminasi = new Eliminasi();
-        SPL solusiFile = new SPL();
-
-        System.out.print("\n----Matriks tereduksi baris\n");
-        tesEliminasi.getMatrixEselonBarisTereduksi(tesFile.matriksForm).displayMatrix();
-
-        
-        double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBaris(tesFile.matriksForm));
         for (int i = 0; i<x.length; i++){
-            System.out.print("solusi x : "+ x[i]) ;
+            System.out.print("solusi x"+ (i+1) + " : "+ x[i]) ;
             System.out.print("\n");
         }
         

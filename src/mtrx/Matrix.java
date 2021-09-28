@@ -3,8 +3,7 @@ package mtrx;
 
 import java.util.Scanner;
 
-import javax.management.MBeanServerInvocationHandler;
-import javax.print.event.PrintEvent;
+
 
 
 public class Matrix {
@@ -140,6 +139,21 @@ public class Matrix {
             setElement(idxRow2, j, temp);
         }
     }
+    public void swapCol(int idxCol1, int idxCol2) {
+        /* KAMUS */
+        int j;
+        double temp;
+        /* ALGORITMA */
+        for (j = 0; j < getColEff(); j++) {
+            temp = getElement(j, idxCol1);
+            setElement(j, idxCol1, getElement(j, idxCol2));
+            setElement(j, idxCol2, temp);
+        }
+    }
+
+
+
+
     public void multiplyRow(int idxRow, double multiplier) {
         /* KAMUS */
         int j;
@@ -247,6 +261,25 @@ public class Matrix {
             else j++; 
         }
         return flag;
+    }
+
+    public Matrix multiplyMatrix (Matrix matriks){
+        /* Prekondisi : Ukuran kolom efektif this.matrix= ukuran baris efektif matriks*/
+        /* Mengirim hasil perkalian matriks: salinan this.matriks * matriks */
+        int i,j,k;
+        double temp;
+        Matrix MatrixHasil = new Matrix(this.row , matriks.col);
+
+        for (i=0 ; i<MatrixHasil.row; i++){
+            for (j=0 ; j<MatrixHasil.col; j++){
+                temp =0;
+                for(k=0 ; k<matriks.col;k++){
+                    temp += this.getElement(i, k) * matriks.getElement(k, j);
+                }
+                MatrixHasil.setElement(i, j, temp);
+            }
+        }  
+        return MatrixHasil;  
     }
 
 }
