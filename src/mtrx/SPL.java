@@ -100,6 +100,24 @@ public class SPL {
         return solusi;
     }
 
+    public double[] cramerMethod(Matrix matrix) {
+        /* KAMUS */
+        Matrix matrixD = new Matrix(matrix);
+        Matrix matrixDx;
+        Determinant determinant = new Determinant();
+        double[] solusi = new double[matrix.getRowEff()];
+        /* ALGORITMA */
+        matrixD.deleteCol(matrixD.getLastIdxCol());
+
+        for (int i = 0; i < matrix.getRowEff(); i++) {
+            matrixDx = new Matrix(matrix);
+            matrixDx.swapCol(i, matrixDx.getLastIdxCol());
+            matrixDx.deleteCol(matrixDx.getLastIdxCol());
+            solusi[i] = determinant.detKofaktor(matrixDx) / determinant.detKofaktor(matrixD);
+        }
+        
+        return solusi;
+    }
     
 
 }
