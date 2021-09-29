@@ -1,7 +1,5 @@
 package mtrx;
 
-import javax.print.event.PrintEvent;
-
 public class SPL {
     
     public double[] BackwardSubstitution(Matrix matriks) {
@@ -30,7 +28,8 @@ public class SPL {
         for (i = 0; i < solusi.getRowEff(); i++) {
             solusi.setElement(i, i + 1, 1);
         }
-        // BACKWARD SUBSTITUTION WITH CONDITION
+        
+        // BACKWARD SUBSTITUTION
         for (i = matrix.getLastIdxRow(); i > -1; i--) {
             j = 0;
             while ((j < matrix.getLastIdxCol()) && (matrix.getElement(i, j) == 0)) {
@@ -54,6 +53,8 @@ public class SPL {
                 }
             }
         }
+
+        // CHANGE TO PARAMETRIC
         for (i = 0; i < solusi.getRowEff(); i++) {
             solusiParametrik[i] = "";
             for (j = 1; j < solusi.getLastIdxCol(); j++) {
