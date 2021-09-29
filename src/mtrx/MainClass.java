@@ -18,7 +18,8 @@ public class MainClass {
 
         /* ujicoba inputan (File & Keyboard) */
         //InputFile.readFile("tesGauss.txt");
-        InputFile.readFile("tesInverse.txt");
+        fileName = scan.next();
+        InputFile.readFile(fileName);
         //tes.readMatrix();
 
         /* ujicoba output matrix */
@@ -34,16 +35,16 @@ public class MainClass {
         Eliminasi tesEliminasi = new Eliminasi();
         tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm).displayMatrix();
         NewLine();
-        tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm).displayMatrix();
+        //tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm).displayMatrix();
         NewLine();
-        tesEliminasi.metodeinverse(InputFile.matriksForm).displayMatrix();
+        //tesEliminasi.metodeinverse(InputFile.matriksForm).displayMatrix();
         NewLine();
 
         /*ujicoba SPL dengan 4 metode */
         SPL solusiFile = new SPL();
-        //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm));
+        double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm));
         //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm));
-        double[] x =solusiFile.cramerMethod(InputFile.matriksForm);
+        //double[] x =solusiFile.cramerMethod(InputFile.matriksForm);
         //double[] x =solusiFile.inverseMethod(InputFile.matriksForm);
         NewLine();
        
@@ -53,10 +54,14 @@ public class MainClass {
         }
         
         fileName = scan.next();
+        //Untuk WriteFile, ntar dicek sudah ada file dengan nama sama/belum
         InputFile.writeMatrixFile(fileName, x);
-
+        
         scan.close();
+        
     }
+
+        /* Untuk interpolasi bikin matrix n x 2 */
 }    
         
     

@@ -167,12 +167,14 @@ public class Matrix {
         int j;
         /* ALGORITMA */
         if (operator) {
-            for (j = 0; j < getColEff(); j++) {
+            for (j = 0; j < getColEff(); j++) {  
                 setElement(idxRow1, j, getElement(idxRow1, j) * multiplier1 + getElement(idxRow2, j) * multiplier2);
+                
             }
         } else {
             for (j = 0; j < getColEff(); j++) {
                 setElement(idxRow1, j, getElement(idxRow1, j) * multiplier1 - getElement(idxRow2, j) * multiplier2);
+                
             }
         }
     }
