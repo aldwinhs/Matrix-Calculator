@@ -52,7 +52,7 @@ public class Matrix {
         return this.content[row][col];
     }
     public void setElement(int row, int col, double x) {
-        this.content[row][col] = x;
+        this.content[row][col] = x + 0;
     }
     public void setColEff(int col) {
         /* KAMUS */
