@@ -3,20 +3,9 @@ package mtrx;
 import java.util.Scanner;
 
 public class Regresi {
-    public Matrix NormalEstimation(){
+    public Matrix NormalEstimation(Matrix nilai, int n, int m){
         Scanner obj = new Scanner(System.in);
-        int i, j, k, n, m; double input, sum;
-        System.out.println("Masukan jumlah data:");
-        n = obj.nextInt();
-        System.out.println("Masukan jumlah variasi:");
-        m = obj.nextInt();
-        Matrix nilai = new Matrix(n, m+1);
-        for ( i = 0; i < nilai.getRowEff(); i++) {
-            for ( j = 0; j < nilai.getColEff(); j++) {
-                input = obj.nextDouble();
-                nilai.setElement(i, j, input);
-            }
-        }
+        int i, j, k; double sum;
         obj.close();
         Matrix hasil = new Matrix(m+1, m+2);
         hasil.setElement(0, 0, n);
