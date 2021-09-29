@@ -21,6 +21,7 @@ public class Regresi {
                 for ( k = 0; k < n; k++) {
                     sum += nilai.getElement(k, j-1) * nilai.getElement(k, i-1);
                 }
+                hasil.setElement(i, j, sum);
             }
         }
 
