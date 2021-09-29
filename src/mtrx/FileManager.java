@@ -12,22 +12,23 @@ import java.util.Scanner;
 public class FileManager {
     
     Scanner scan= new Scanner(System.in);
-
     Matrix matriksForm = new Matrix(100,100);
-    
+    public int count;
 
     public void readFile(String fileName){
         try{
             int nRow = 0 , nCol = 0;
-            Scanner scanFile = new Scanner(new BufferedReader(new FileReader("test/" +fileName)));
+            
+            Scanner scanFile = new Scanner(new BufferedReader(new FileReader("test/" +fileName + ".txt")));
             while(scanFile.hasNextLine()) {
                 nRow++;                                                     //hitung jumlah baris
                 nCol = scanFile.nextLine().trim().split(" ").length;        //hitung kolom dengan pemisah elemen matriks dengan spasi
                 
 
-            Scanner FileToMatrix = new Scanner(new BufferedReader(new FileReader("test/"+fileName)));
+            Scanner FileToMatrix = new Scanner(new BufferedReader(new FileReader("test/"+fileName + ".txt")));
             matriksForm.setRowEff(nRow);
             matriksForm.setColEff(nCol);
+            this.count = nRow;
             //Konstruktor matriks dari file
             
             for (int i = 0; i<nRow; i++){
@@ -51,7 +52,7 @@ public class FileManager {
 
     public void writeMatrixFile(String fileName, Matrix matriks){
         try{
-            BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
+            BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt"));
             int i,j;
             
             for(i=0; i <matriks.row; i++){
@@ -71,7 +72,7 @@ public class FileManager {
 
     }
 
-    public void writeMatrixFile(String fileName, double[] solusi){
+    public void writeDoubleFile(String fileName, double[] solusi){
         try{
             BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
             int i;

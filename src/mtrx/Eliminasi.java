@@ -67,15 +67,18 @@ public class Eliminasi {
 
         int i,j,k;
         boolean satuNotFound;
+        double multiplier;
 
         for (i = 1; i< matrixHasil.getRowEff(); i++){
             j = 0;
             satuNotFound = true;
-            while (satuNotFound && j<matrixHasil.getColEff()) {
+            while (satuNotFound && j<matrixHasil.getLastIdxCol()) {
                 if (matrixHasil.getElement(i, j) == 1) {
                     satuNotFound = false;
                     for ( k = 0; k < i; k++) {
-                        matrixHasil.plusMinusRow(k, j, 1, matrixHasil.getElement(k, j), false);
+                        multiplier = matrixHasil.getElement(k, j);
+                        matrixHasil.plusMinusRow(k, i, 1, multiplier, false);
+                        
                     }
                 } else {
                     j++;
