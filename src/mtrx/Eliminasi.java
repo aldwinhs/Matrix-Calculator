@@ -173,5 +173,35 @@ public class Eliminasi {
 
         return matrixHasil;
     }
+
+    public Matrix inverseMinorCofactorMethod (Matrix matrix) {
+        /* KAMUS */
+        Determinant determinant = new Determinant();
+        Matrix matrixHasil = new Matrix(matrix);
+        Matrix tempMatrix;
+        int i, j;
+        double multiplier;
+        /* ALGORITMA */
+        // MATRIX MINOR COFACTOR
+        for (i = 0; i < matrixHasil.getRowEff(); i++) {
+            for (j = 0; j < matrixHasil.getColEff(); j++) {
+                tempMatrix = new Matrix(matrix);
+                tempMatrix.deleteCol(0);
+                tempMatrix.deleteRow(0);
+                matrixHasil.setElement(i, j, ((i + j) % 2 == 0 ? 1 : -1) * determinant.detKofaktor(tempMatrix));
+            }
+        }
+
+        // MATRIX ADJOINT
+        matrixHasil.transpose();
+
+        // KALI 1/DETERMINANT
+        multiplier = 1 / determinant.detKofaktor(matrix);
+        for (i = 0; i < matrixHasil.getRowEff(); i++) {
+            matrixHasil.multiplyRow(i, multiplier);
+        }
+
+        return matrixHasil;
+    }
         
 }
