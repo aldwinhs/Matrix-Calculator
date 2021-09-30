@@ -11,11 +11,11 @@ public class MainClass {
     public static double[] solution;
     public static double[] taksiran;
     public static double[] hasilTaksir;
-    public static Determinant hasilDeterminan;
-    public static Interpolasi hasilInterpolasi;
-    public static Eliminasi hasilEliminasi;
-    public static Regresi hasilRegresi;
-    public static SPL hasilSPL;
+    public static Determinant hasilDeterminan = new Determinant(); 
+    public static Interpolasi hasilInterpolasi = new Interpolasi();
+    public static Eliminasi hasilEliminasi = new Eliminasi();
+    public static Regresi hasilRegresi = new Regresi();;
+    public static SPL hasilSPL = new SPL();
     public static int option;
     public static Matrix InputMatrix;
     public Matrix MatrixUji;
@@ -23,7 +23,7 @@ public class MainClass {
 
     public static void main(String[] args){
         Menu();
-}    
+    }    
 
     public static int cekSolusi(Matrix matriks) {
         int i;
@@ -111,8 +111,8 @@ public class MainClass {
                     InputFile.readFile();
                     InputMatrix = new Matrix(InputFile.matriksForm);
                 }
-                
-                if (cekSolusi(hasilEliminasi.getMatrixEselonBaris(InputMatrix)) ==1) {
+                Matrix tempMatrix = hasilEliminasi.getMatrixEselonBaris(InputMatrix);
+                if (cekSolusi(tempMatrix) ==1) {
                     System.out.println("SPL tidak memiliki solusi!");
                 } else if (cekSolusi(hasilEliminasi.getMatrixEselonBaris(InputMatrix)) ==2) {
                     String[] solution = hasilSPL.solusiBanyak(hasilEliminasi.getMatrixEselonBaris(InputMatrix));
