@@ -159,7 +159,7 @@ public class MainClass {
 
     public void MenuRegresi() {}
 
-    public void NewLine() {}
+    public static void NewLine() {}
 
     public static void main(String[] args){
 
