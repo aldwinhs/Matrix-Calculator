@@ -100,7 +100,7 @@ public class Matrix {
         Scanner scan = new Scanner(System.in);
         int nRow,nCol;
 
-        System.out.println("Masukkan nilai N*M");
+        System.out.println("Masukkan nilai N x M");
             nRow = scan.nextInt();
             nCol = scan.nextInt();
 

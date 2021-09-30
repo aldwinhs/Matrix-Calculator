@@ -2,22 +2,30 @@ package mtrx;
 import java.util.Scanner;
 
 
+
+
 public class MainClass {
 
     public static FileManager InputFile;
     public static String namaFile;
     public static double[] solution;
+    public static double[] taksiran;
+    public static double[] hasilTaksir;
     public static Determinant hasilDeterminan;
     public static Interpolasi hasilInterpolasi;
     public static Eliminasi hasilEliminasi;
     public static Regresi hasilRegresi;
     public static SPL hasilSPL;
     public static int option;
-    public Matrix InputMatrix;
+    public static Matrix InputMatrix;
     public Matrix MatrixUji;
     public static Scanner scan = new Scanner(System.in);
 
-    public int cekSolusi(Matrix matriks) {
+    public static void main(String[] args){
+        Menu();
+}    
+
+    public static int cekSolusi(Matrix matriks) {
         int i;
         int kondisi;
 
@@ -43,8 +51,7 @@ public class MainClass {
         return kondisi;
     } 
 
-
-    public void Menu() {
+    public static void Menu() {
 
         System.out.println("============================");
         System.out.println("MENU");
@@ -61,19 +68,19 @@ public class MainClass {
         while (option < 1 | option > 6) {
             System.out.print("Masukan tidak valid!\n Masukkan pilihan di antara 1-6: ");
             option = scan.nextInt();
-        
+        }
+            
         if (option==1) MenuSPL();
         else if (option==2) MenuDet();
         else if (option ==3) MenuInverse();
         else if (option == 4) MenuInter();
         else if (option ==5) MenuRegresi();
         else System.out.println("============================");
-        }
+        
     }
     
-    public void MenuSPL() {
-        
-        System.out.println("");
+    public static void MenuSPL() {
+            System.out.println("");
             System.out.println("============================");
             System.out.println("MENU Sistem Persamaan Linier");
             System.out.println("1. Metode eliminasi Gauss");
@@ -94,6 +101,7 @@ public class MainClass {
                 System.out.print("Masukkan pilihan anda: ");
                 option = scan.nextInt();
 
+                Matrix InputMatrix = new Matrix();
                 //Input dari Keyboard
                 if (option == 1) {
                     System.out.println("Masukkan matriks augmented");
@@ -120,75 +128,8 @@ public class MainClass {
                     }
                 }
                 InputFile.writeDoubleFile(solution);
-            } else if (option==2) {
-                    System.out.println("Masukkan matriks augmented");
-                    InputMatrix.readMatrix();
-                    if (cekSolusi(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix)) ==1){
-                        System.out.println("SPL tidak memiliki solusi!");
-                    } else if (cekSolusi(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix)) ==2){
-                        String[] solution = hasilSPL.solusiBanyak(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix));
-                        for (int i = 0; i<solution.length; i++){
-                            System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
-                            System.out.print("\n");
-                        }
-                    } else {
-                        solution = hasilSPL.BackwardSubstitution(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix));
-                        for (int i = 0; i<solution.length; i++){
-                            System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
-                            System.out.print("\n");
-                        }
-                    }
-                    InputFile.writeDoubleFile(solution);
-            }
-
-            else if (option==3){
-                    if (InputMatrix.getLastIdxRow() == InputMatrix.getColEff()){
-                        
-                    }
-                }
-                
-            }
-
-    }
-
-    public void MenuDet() {}
-
-    public void MenuInverse() {}
-
-    public void MenuInter() {}
-
-    public void MenuRegresi() {}
-
-    public static void NewLine() {}
-
-    public static void main(String[] args){
-
-
-        
-        
-        
-        //FileManager InputFile= new FileManager();
-        
-        
-        
-
-        //SPL
-        if (option ==1){
-            //prosedur spl()
-            System.out.println("");
-            System.out.println("============================");
-            System.out.println("MENU Sistem Persamaan Linier");
-            System.out.println("1. Metode eliminasi Gauss");
-            System.out.println("2. Metode eliminasi Gauss-Jordan");
-            System.out.println("3. Metode matriks balikan");
-            System.out.println("4. Kaidah Cramer");
-            System.out.println("5. Balik ke Main Menu");
-            System.out.println("============================");
-            System.out.print("Masukkan pilihan anda: ");
-            option = scan.nextInt();
-
-            //pilih Gauss
-            if (option==1){
+            } 
+            else if (option==2) {
                 System.out.println("");
                 System.out.println("============================");
                 System.out.println("Pilih jenis masukan");
@@ -197,87 +138,223 @@ public class MainClass {
                 System.out.print("Masukkan pilihan anda: ");
                 option = scan.nextInt();
 
-                if (option==1){
-                    System.out.println("============================");
-                    matriks.readMatrix();
+                //Input dari Keyboard
+                if (option == 1) {
+                    System.out.println("Masukkan matriks augmented");
+                    InputMatrix.readMatrix();
+                } else if (option == 2) {
+                    System.out.println("Masukkan nama File");
+                    InputFile.readFile();
+                    InputMatrix = new Matrix(InputFile.matriksForm);
+                }
+
+                if (cekSolusi(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix)) ==1){
+                    System.out.println("SPL tidak memiliki solusi!");
+                } 
+                else if (cekSolusi(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix)) ==2){
+                    String[] solution = hasilSPL.solusiBanyak(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix));
+                    for (int i = 0; i<solution.length; i++){
+                        System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
+                        System.out.print("\n");
+                    }
+                } 
+                else {
+                    solution = hasilSPL.BackwardSubstitution(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix));
+                    for (int i = 0; i<solution.length; i++){
+                        System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
+                        System.out.print("\n");
+                    }
+                }
+                InputFile.writeDoubleFile(solution);
+        }
+            else if (option==3){
+                System.out.println("");
+                System.out.println("============================");
+                System.out.println("Pilih jenis masukan");
+                System.out.println("1. Masukan dari keyboard");
+                System.out.println("2. Masukan dari file");
+                System.out.print("Masukkan pilihan anda: ");
+                option = scan.nextInt();
+
+                //Input dari Keyboard atau File
+                if (option == 1) {
+                    System.out.println("Masukkan matriks augmented");
+                    InputMatrix.readMatrix();
+                } else if (option == 2) {
+                    System.out.println("Masukkan nama File");
+                    InputFile.readFile();
+                    InputMatrix = new Matrix(InputFile.matriksForm);
+                }
+
+                if (InputMatrix.getLastIdxRow() == InputMatrix.getColEff()){
+                    if (hasilDeterminan.detKofaktor(InputMatrix) != 0){
+                        solution = hasilSPL.inverseMethod(InputMatrix);
+                        for (int i = 0; i<solution.length; i++){
+                        System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
+                        System.out.print("\n");
+                        }
+                    }
+                    else //Determinan = 0
+                    System.out.println("Matriks tidak memiliki balikan, karena determinan = 0!");
                     
-                    if (hasilEliminasi.getMatrixEselonBaris(matriks).rowIsZero())
-                    
-                    hasilSPL.BackwardSubstitution(hasilEliminasi.getMatrixEselonBaris(matriks));
+                    InputFile.writeDoubleFile(solution);
+                }
+                else {
+                    System.out.println("Metode Balikan Hanya menerima Matriks dengan n Peubah dan n Persamaan!");
                 }
             }
-        }
+            else if (option==4){
+                System.out.println("");
+                System.out.println("============================");
+                System.out.println("Pilih jenis masukan");
+                System.out.println("1. Masukan dari keyboard");
+                System.out.println("2. Masukan dari file");
+                System.out.print("Masukkan pilihan anda: ");
+                option = scan.nextInt();
 
-        
+                //Input dari Keyboard atau File
+                if (option == 1) {
+                    System.out.println("Masukkan matriks augmented");
+                    InputMatrix.readMatrix();
+                } else if (option == 2) {
+                    System.out.println("Masukkan nama File");
+                    InputFile.readFile();
+                    InputMatrix = new Matrix(InputFile.matriksForm);
+                }
 
-        // Matrix InputKeyboard = new Matrix();
-
-        /* ujicoba inputan (File & Keyboard) */
-        //InputFile.readFile("tesGauss.txt");
-
-        InputFile.readFile(fileName);
-        //tes.readMatrix();
-
-        /* ujicoba output matrix */
-        InputFile.matriksForm.displayMatrix();
-        NewLine();
-        //InputKeyboard.displayMatrix();
-        
-        //tes swap
-       
-
-        
-        /* Ujicoba Eliminasi cara Gauss  dan Gauss Jordan dengan inputFile*/
-        Eliminasi tesEliminasi = new Eliminasi();
-        tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm).displayMatrix();
-        NewLine();
-        //tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm).displayMatrix();
-        NewLine();
-        //tesEliminasi.metodeinverse(InputFile.matriksForm).displayMatrix();
-        NewLine();
-        
-        /*ujicoba SPL dengan 4 metode */
-        SPL solusiFile = new SPL();
-        //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm));
-        //double[] x =solusiFile.BackwardSubstitution(tesEliminasi.getMatrixEselonBaris(InputFile.matriksForm));
-        //double[] x =solusiFile.cramerMethod(InputFile.matriksForm);
-        //double[] x =solusiFile.inverseMethod(InputFile.matriksForm);
-
-        String[] x = solusiFile.solusiBanyak(tesEliminasi.getMatrixEselonBarisTereduksi(InputFile.matriksForm));
-        NewLine();
-
-        /*ujicoba interpolasi*/
-        //Interpolasi SoalInter = new Interpolasi();
-
-        /* khusus interpolasi
-        Matrix matrixInter = new Matrix(InputFile.matriksForm);
-        matrixInter.deleteCol(matrixInter.getLastIdxRow());
-        double[] x = SoalInter.SolveInterpolasi(InputFile.matriksForm, InputFile.count);
-        */
-        
-        
-        
-        for (int i = 0; i<x.length; i++){
-            System.out.print("solusi x"+ (i+1) + " : "+ x[i]) ;
-            System.out.print("\n");
-        }
-        /*
-        double[] taksir = new double[1];
-        taksir[0] = SoalInter.SolveTaksiran( x,9.2);
-        fileName = scan.next();
-        Untuk WriteFile, ntar dicek sudah ada file dengan nama sama/belum
-        untuk solusi SPL
-        InputFile.writeMatrixFile(fileName, x);
-        
-        untuk solusi determinan, taksiran
-        InputFile.writeDoubleFile(fileName, taksir);
-        scan.close();
-        */
+                if (InputMatrix.getLastIdxRow() == InputMatrix.getColEff()){
+                    solution = hasilSPL.cramerMethod(InputMatrix);
+                    for (int i = 0; i<solution.length; i++){
+                        System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
+                        System.out.print("\n");
+                    }
+                    InputFile.writeDoubleFile(solution);
+                }
+                else {
+                    System.out.println("Metode Cramer Hanya menerima Matriks dengan n Peubah dan n Persamaan!");
+                }
+            }   
+            
+            else {
+                Menu();
+            }
     }
 
+    public static void MenuDet() {
+        System.out.println("");
+        System.out.println("============================");
+        System.out.println("MENU Determinan");
+        System.out.println("1. Metode reduksi baris");
+        System.out.println("2. Metode kofaktor");
+        System.out.println("3. Balik ke Main Menu");
+        System.out.println("============================");
+        System.out.print("Masukkan pilihan anda: ");
+        option = scan.nextInt();
+        if (option==1){
+            System.out.println("");
+            System.out.println("============================");
+            System.out.println("Pilih jenis masukan");
+            System.out.println("1. Masukan dari keyboard");
+            System.out.println("2. Masukan dari file");
+            System.out.print("Masukkan pilihan anda: ");
+            option = scan.nextInt();
+
+            //Input dari Keyboard
+            if (option == 1) {
+                System.out.println("Masukkan matriks augmented");
+                InputMatrix.readMatrix();
+            } else if (option == 2) {
+                System.out.println("Masukkan nama File");
+                InputFile.readFile();
+                InputMatrix = new Matrix(InputFile.matriksForm);
+            }
+
+            if (InputMatrix.isSquare())solution[0] = hasilDeterminan.detReduksiBaris(InputMatrix);  
+            else System.out.println("Matriks tidak memiliki determinan karena bukan matriks persegi");
+            InputFile.writeDoubleFile(solution);
+        }
+
+        else if (option==2){
+            System.out.println("");
+            System.out.println("============================");
+            System.out.println("Pilih jenis masukan");
+            System.out.println("1. Masukan dari keyboard");
+            System.out.println("2. Masukan dari file");
+            System.out.print("Masukkan pilihan anda: ");
+            option = scan.nextInt();
+
+            //Input dari Keyboard
+            if (option == 1) {
+                System.out.println("Masukkan matriks augmented");
+                InputMatrix.readMatrix();
+            } else if (option == 2) {
+                System.out.println("Masukkan nama File");
+                InputFile.readFile();
+                InputMatrix = new Matrix(InputFile.matriksForm);
+            }
+            if (InputMatrix.isSquare())solution[0] = hasilDeterminan.detKofaktor(InputMatrix);  
+            else System.out.println("Matriks tidak memiliki determinan karena bukan matriks persegi");
+            InputFile.writeDoubleFile(solution);
+        }
+        else Menu();
+    }
+
+    public static void MenuInverse() {}
+
+    public static void MenuInter() {
+        System.out.println("");
+        System.out.println("============================");
+        System.out.println("Pilih jenis masukan");
+        System.out.println("1. Masukan dari keyboard");
+        System.out.println("2. Masukan dari file");
+        System.out.print("Masukkan pilihan anda: ");
+        option = scan.nextInt();
+
+        //Input dari Keyboard
+        if (option == 1) {
+            System.out.println("Masukkan matriks augmented 2x2");
+            InputMatrix.readMatrix();
+        }
+        else if (option == 2) {
+            System.out.println("Masukkan nama File");
+            InputFile.readFile();
+            InputMatrix = new Matrix(InputFile.matriksForm);
+        }
+        solution = hasilInterpolasi.SolveInterpolasi(InputMatrix, InputMatrix.getRowEff());
+        System.out.print("Polinom Interpolasi yang melalui semua titik adalah p" + InputMatrix.getLastIdxRow() +"(x) =");
+        for (int i=0; i< solution.length; i++){
+            if (i==0) System.out.print(solution[i]);
+
+            if (solution[i] > 0){
+                if (i==1) System.out.print(" + " +  solution[i] + "x" +i);
+                else System.out.print(" + " + solution[i] + "x^" +i);
+            }
+            else{
+                 if (i==1) System.out.print(solution[i] + "x" +i);
+                else System.out.print(solution[i] + "x^" +i);
+            }
+        }
+        int NTaksiran,i;
+        System.out.println("");
+        System.out.print("Masukkan N jumlah taksiran : ");
+        NTaksiran = scan.nextInt();
+        for (i=0; i<NTaksiran; i++){
+            taksiran[i] = scan.nextDouble();
+        }
+
+        for (i=0; i<NTaksiran; i++){
+            hasilTaksir[i] = hasilInterpolasi.SolveTaksiran(solution, taksiran[i]);
+            System.out.println("P" + InputMatrix.getLastIdxRow() +"(" +taksiran[i]+") = " + hasilTaksir[i]);
+        }
+
+        InputFile.writeInterpolasi(solution, taksiran, hasilTaksir);
+    }
+
+    public static void MenuRegresi() {}
+
+}
+
     
-        /* Untuk interpolasi bikin matrix n x 2 */
-}    
         
     
 
