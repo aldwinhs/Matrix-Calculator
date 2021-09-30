@@ -44,8 +44,8 @@ public class SPL {
             if (j != matrix.getLastIdxCol()) {
                 solusi.setElement(j, j + 1, 0);
                 solusi.setElement(j, 0, matrix.getElement(i, matrix.getLastIdxCol()));
-                solusi.displayMatrix();
-                System.out.println("------");
+                // solusi.displayMatrix();
+                // System.out.println("------");
                 for (k = 0; k < matrix.getLastIdxCol(); k++) {
                     if (j != k) {
                         solusi.plusMinusRow(j, k, 1, matrix.getElement(i, k), false);
@@ -55,7 +55,7 @@ public class SPL {
                 }
             }
         }
-        solusi.displayMatrix();
+        // solusi.displayMatrix();
         
         // CHANGE TO PARAMETRIC
         char[] varParametrikFix = new char[solusi.getRowEff()];
@@ -66,9 +66,9 @@ public class SPL {
                 j++;
             }
         }
-        for (i = 0; i < solusi.getRowEff(); i++) {
-            System.out.println(varParametrikFix[i]);
-        }
+        // for (i = 0; i < solusi.getRowEff(); i++) {
+        //     System.out.println(varParametrikFix[i]);
+        // }
         for (i = 0; i < solusi.getRowEff(); i++) {
             solusiParametrik[i] = "";
             for (j = 1; j <= solusi.getLastIdxCol(); j++) {
@@ -116,9 +116,9 @@ public class SPL {
                 }
             }
         }
-        for (i = 0; i < 2; i++) {
-            System.out.println(solusiParametrik[i]);
-        }
+        // for (i = 0; i < 2; i++) {
+        //     System.out.println(solusiParametrik[i]);
+        // }
         return solusiParametrik;
     }
 
