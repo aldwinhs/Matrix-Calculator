@@ -89,7 +89,7 @@ public class Eliminasi {
             // matrixHasil = sortMatrix(matrixHasil);
             while (j < i) {
                 // matrixHasil = new Matrix(sortMatrix(matrixHasil));
-                matrixHasil.displayMatrix();
+                // matrixHasil.displayMatrix();
                 System.out.println();
                 System.out.println(lenght[i] + ' ' + lenght[j]);
                 if (lenght[i] == lenght[j]) {
@@ -115,7 +115,7 @@ public class Eliminasi {
             // matrixHasil = sortMatrix(matrixHasil);
             while (j < i) {
                 // matrixHasil = new Matrix(sortMatrix(matrixHasil));
-                matrixHasil.displayMatrix();
+                // matrixHasil.displayMatrix();
                 System.out.println();
                 System.out.println(lenght[i] + ' ' + lenght[j]);
                 if (lenght[i] == lenght[j]) {
