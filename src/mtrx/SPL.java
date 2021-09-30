@@ -33,7 +33,8 @@ public class SPL {
         for (i = 0; i < solusi.getRowEff(); i++) {
             solusi.setElement(i, i + 1, 1);
         }
-
+        // solusi.displayMatrix();
+        // System.out.println("------");
         // BACKWARD SUBSTITUTION
         for (i = matrix.getLastIdxRow(); i > -1; i--) {
             j = 0;
@@ -43,14 +44,18 @@ public class SPL {
             if (j != matrix.getLastIdxCol()) {
                 solusi.setElement(j, j + 1, 0);
                 solusi.setElement(j, 0, matrix.getElement(i, matrix.getLastIdxCol()));
-
+                solusi.displayMatrix();
+                System.out.println("------");
                 for (k = 0; k < matrix.getLastIdxCol(); k++) {
                     if (j != k) {
                         solusi.plusMinusRow(j, k, 1, matrix.getElement(i, k), false);
                     }
+                    // solusi.displayMatrix();
+                    // System.out.println("------");
                 }
             }
         }
+        solusi.displayMatrix();
         
         // CHANGE TO PARAMETRIC
         char[] varParametrikFix = new char[solusi.getRowEff()];
@@ -62,8 +67,11 @@ public class SPL {
             }
         }
         for (i = 0; i < solusi.getRowEff(); i++) {
+            System.out.println(varParametrikFix[i]);
+        }
+        for (i = 0; i < solusi.getRowEff(); i++) {
             solusiParametrik[i] = "";
-            for (j = 1; j < solusi.getLastIdxCol(); j++) {
+            for (j = 1; j <= solusi.getLastIdxCol(); j++) {
                 if (solusi.getElement(i, j) != 0) {
                     if (solusi.getElement(i, j) == 1) solusiParametrik[i] += varParametrikFix[j - 1] + " + ";
                     else if (solusi.getElement(i, j) == -1) {
@@ -107,6 +115,9 @@ public class SPL {
                     if (solusiParametrik[i] != "") solusiParametrik[i] = solusiParametrik[i].substring(0, solusiParametrik[i].length() - 3);
                 }
             }
+        }
+        for (i = 0; i < 2; i++) {
+            System.out.println(solusiParametrik[i]);
         }
         return solusiParametrik;
     }
