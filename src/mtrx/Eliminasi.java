@@ -89,7 +89,7 @@ public class Eliminasi {
     }
 
 
-    public Matrix metodeinverse(Matrix matrix){
+    public Matrix inverseGaussJordanMethod(Matrix matrix){
         // Matrix matrixHasil = new Matrix(matrix);
         // int nRow = matrixHasil.getRowEff();
         // int nCol = matrixHasil.getColEff();

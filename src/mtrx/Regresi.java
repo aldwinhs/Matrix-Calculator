@@ -28,12 +28,12 @@ public class Regresi {
         return hasil;
     }
 
-    public double TaksiranRegresi (double[] solusi, double[] x){
-        double fx = solusi[0];
+    public double TaksiranRegresi (double[] solusi, double x){
+        double fx = 0;
         int i;
 
-        for (i = 1; i < solusi.length ; i++){
-            fx += x[i-1]*solusi[i];
+        for (i = 0; i < solusi.length ; i++){
+            fx += x*solusi[i];
         }
 
         return fx;

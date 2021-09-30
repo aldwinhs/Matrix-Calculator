@@ -155,9 +155,9 @@ public class SPL {
         temp.deleteCol(temp.getLastIdxCol());
         
         Eliminasi tempInverse = new Eliminasi();
-        //tempInverse.metodeinverse(temp).multiplyMatrix(konstan).displayMatrix();
+        //tempInverse.inverseGaussJordanMethod(temp).multiplyMatrix(konstan).displayMatrix();
         for (i = 0; i<temp.getRowEff(); i++){
-            solusi[i] = tempInverse.metodeinverse(temp).multiplyMatrix(konstan).getElement(i, 0);
+            solusi[i] = tempInverse.inverseGaussJordanMethod(temp).multiplyMatrix(konstan).getElement(i, 0);
         }
         return solusi;
 

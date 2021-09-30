@@ -32,7 +32,7 @@ public class MainClass {
         
         Matrix temp = new Matrix(ujiMatrix);
         temp.deleteCol(ujiMatrix.getLastIdxCol());
-        temp.displayMatrix();
+        
 
         //ujiMatrix 1 2 3
 
@@ -116,7 +116,9 @@ public class MainClass {
                 }
                 else Menu();
                 Matrix tempMatrix = hasilEliminasi.getMatrixEselonBaris(InputMatrix);
+                System.out.println("==============Matrix Eselon Baris==============");
                 tempMatrix.displayMatrix();
+                System.out.println("===============================================");
                 int validasiSolusi = cekSolusi(tempMatrix);
                 if ( validasiSolusi ==1) {
                     System.out.println("SPL tidak memiliki solusi!");
@@ -162,12 +164,16 @@ public class MainClass {
                     InputMatrix = new Matrix(InputFile.matriksForm);
                 }
                 else Menu();
-                if (cekSolusi(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix)) ==1){
+                Matrix tempMatrix = hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix);
+                System.out.println("==========Matrix Eselon Baris Tereduksi==========");
+                tempMatrix.displayMatrix();
+                System.out.println("===============================================");
+                if (cekSolusi(tempMatrix)==1){
                     System.out.println("SPL tidak memiliki solusi!");
                     InputFile.writeString("SPL tidak memiliki solusi!");
                 } 
-                else if (cekSolusi(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix)) ==2){
-                    String[] solution = hasilSPL.solusiBanyak(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix));
+                else if (cekSolusi(tempMatrix) ==2){
+                    String[] solution = hasilSPL.solusiBanyak(tempMatrix);
                     for (int i = 0; i<solution.length; i++){
                         System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
                         System.out.print("\n");
@@ -373,7 +379,7 @@ public class MainClass {
             Matrix hasilInverse = new Matrix();
             if (InputMatrix.isSquare()){
                 if(hasilDeterminan.detKofaktor(InputMatrix) != 0){
-                    hasilInverse = hasilEliminasi.metodeinverse(InputMatrix);
+                    hasilInverse = hasilEliminasi.inverseGaussJordanMethod(InputMatrix);
                     System.out.println("Matriks Balikan : ");
                     hasilInverse.displayMatrix();
                     System.out.println("============================");
@@ -519,12 +525,16 @@ public class MainClass {
         System.out.println("Diperoleh SPL untuk mencari Regresi dalam bentuk matrix sebagai berikut: ");
         Regres.displayMatrix();
         System.out.println("Bentuk regresi dari hasil penyelesaian SPL diatas ialah");
+        System.out.print("y = ");
         for(int i=0; i <solution.length; i++){
             if (solution[i]> 0){
-                System.out.print(String.valueOf( " + " + (solution[i]) +"x" + (i+1)));
+                if (i==0) System.out.print(String.valueOf((solution[i])));
+                else System.out.print(String.valueOf( " + " + (solution[i]) +"x" + (i)));
+                
             }
             else if (solution[i] < 0){
-                System.out.print(String.valueOf((solution[i]) +"x" + (i+1)));
+                if (i==0) System.out.print(String.valueOf((solution[i])));
+                else System.out.print(String.valueOf((solution[i]) +"x" + (i)));
             }
             
         }
@@ -534,14 +544,16 @@ public class MainClass {
         int NTaksiran,i;
         System.out.println("");
         System.out.print("Masukkan N jumlah taksiran : ");
-        NTaksiran = scan.nextInt(); //Ntaksiran diganti jadi m yang diinput sebelumnya
+        NTaksiran = scan.nextInt();
         double[] taksiran = new double[NTaksiran];
         for (i=0; i<NTaksiran; i++){
             taksiran[i] = scan.nextDouble();
         }
-        double hasilTaksir = 0;
-        hasilTaksir = hasilRegresi.TaksiranRegresi(solution, taksiran);
-        System.out.println("F(" +taksiran[i]+") = " + hasilTaksir);
+        double[] hasilTaksir = new double[NTaksiran];
+        for (i=0; i<NTaksiran; i++){
+            hasilTaksir[i] = hasilRegresi.TaksiranRegresi(solution, taksiran[i]);
+            System.out.println("F(" +taksiran[i]+") = " + hasilTaksir[i]);
+        }
 
         InputFile.writeRegresi(solution, taksiran, hasilTaksir, Regres);
 
