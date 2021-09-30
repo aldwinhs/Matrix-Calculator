@@ -113,7 +113,7 @@ public class Matrix {
                 this.content[i][j] = scan.nextDouble();       
             }
         }
-        scan.close();
+        
     }
 
     public void displayMatrix() {

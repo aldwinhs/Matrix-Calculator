@@ -108,7 +108,33 @@ public class FileManager {
 
     }
 
-    public void writeInterpolasi(double[] solusi, double[] taksiran, double[] hasilTaksiran){
+   
+
+    public void writeString(String pesan){
+        int pilihan;
+        System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
+        System.out.println("(1 = Iya atau 0 = Tidak)");
+        pilihan = scan.nextInt();
+
+        if (pilihan == 1){
+            try{
+                String fileName = scan.next();
+                BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
+                    fileWriter.write(pesan);
+                    fileWriter.newLine();
+                
+                fileWriter.flush();
+                fileWriter.close();
+                
+            }
+            catch(Exception e){
+                System.out.println("Error");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void writeStringFile(String[] solusi){
         int pilihan;
         System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
         System.out.println("(1 = Iya atau 0 = Tidak)");
@@ -119,6 +145,49 @@ public class FileManager {
                 String fileName = scan.next();
                 BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
                 int i;
+                for(i=0; i <solusi.length; i++){
+                    fileWriter.write(("x" + (i+1 + ": " + solusi[i])));
+                    fileWriter.newLine();
+                }
+                fileWriter.flush();
+                fileWriter.close();
+                
+            }
+            catch(Exception e){
+                System.out.println("Error");
+                e.printStackTrace();
+            }
+        }
+        
+
+    }
+        
+
+    public void writeInterpolasi(double[] solusi, double[] taksiran, double[] hasilTaksiran, Matrix matriks){
+        int pilihan;
+        System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
+        System.out.println("(1 = Iya atau 0 = Tidak)");
+        pilihan = scan.nextInt();
+
+        if (pilihan == 1){
+            try{
+                String fileName = scan.next();
+                BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
+                int i;
+
+                fileWriter.write("Diperoleh SPL untuk mencari Regresi dalam bentuk matrix sebagai berikut: ");
+                fileWriter.newLine();
+                int i,j;
+                
+                for(i=0; i <matriks.row; i++){
+                    for( j =0; j<matriks.col; j++){
+                        if (j != matriks.getLastIdxCol()) fileWriter.write(String.valueOf(matriks.getElement(i, j))+ " ");
+                        else fileWriter.write(String.valueOf(matriks.getElement(i, j))+ " ");
+                    }
+                    fileWriter.newLine();
+                }
+                fileWriter.newLine();
+
                 for(i=0; i <solusi.length; i++){
 
                     fileWriter.write(String.valueOf(("P" + solusi.length +"(" +taksiran[i]+") = " + hasilTaksiran[i])));
@@ -134,6 +203,61 @@ public class FileManager {
             }
         }
     }
-        
 
+    public void writeRegresi (double[] solusi, double [] taksiran, double[] hasilTaksiran, Matrix matriks){
+        int pilihan;
+        System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
+        System.out.println("(1 = Iya atau 0 = Tidak)");
+        pilihan = scan.nextInt();
+
+        if (pilihan == 1){
+            try{
+                String fileName = scan.next();
+                BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
+                
+                fileWriter.write("Diperoleh SPL untuk mencari Regresi dalam bentuk matrix sebagai berikut: ");
+                fileWriter.newLine();
+                int i,j;
+                
+                for(i=0; i <matriks.row; i++){
+                    for( j =0; j<matriks.col; j++){
+                        if (j != matriks.getLastIdxCol()) fileWriter.write(String.valueOf(matriks.getElement(i, j))+ " ");
+                        else fileWriter.write(String.valueOf(matriks.getElement(i, j))+ " ");
+                    }
+                    fileWriter.newLine();
+                }
+                fileWriter.newLine();
+
+
+                fileWriter.write("Bentuk regresi dari hasil penyelesaian SPL diatas ialah");
+                fileWriter.newLine();
+                fileWriter.write("y = ");
+               
+                for(i=0; i <solusi.length; i++){
+                    if (solusi[i]> 0){
+                        fileWriter.write(String.valueOf( " + " + (solusi[i]) +"x" + (i+1)));
+                        fileWriter.newLine();
+                    }
+                    else if (solusi[i] < 0){
+                        fileWriter.write(String.valueOf((solusi[i]) +"x" + (i+1)));
+                        fileWriter.newLine();
+                    }
+                    
+                }
+                fileWriter.newLine();
+                fileWriter.write("Nilai taksiran : ");
+                for(i=0; i <solusi.length; i++){
+                    fileWriter.write(String.valueOf(("y" + "(" +taksiran[i]+") = " + hasilTaksiran[i])));
+                    fileWriter.newLine();
+                }
+                fileWriter.flush();
+                fileWriter.close();
+                
+            }
+            catch(Exception e){
+                System.out.println("Error");
+                e.printStackTrace();
+            }
+        }
+    }
 }

@@ -27,4 +27,17 @@ public class Regresi {
 
         return hasil;
     }
+
+    public double TaksiranRegresi (double[] solusi, double x){
+        double fx = 0;
+        int i;
+
+        for (i = 0; i < solusi.length ; i++){
+            fx += x*solusi[i];
+        }
+
+        return fx;
+
+    }
+
 }
