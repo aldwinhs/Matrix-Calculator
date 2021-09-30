@@ -90,8 +90,8 @@ public class Eliminasi {
             while (j < i) {
                 // matrixHasil = new Matrix(sortMatrix(matrixHasil));
                 // matrixHasil.displayMatrix();
-                System.out.println();
-                System.out.println(lenght[i] + ' ' + lenght[j]);
+                // System.out.println();
+                // System.out.println(lenght[i] + ' ' + lenght[j]);
                 if (lenght[i] == lenght[j]) {
                     if (lenght[i] < matrixHasil.getColEff()) matrixHasil.plusMinusRow(i, j, 1, matrixHasil.getElement(i, lenght[i]), false);
                     lenght[i] = lenght[i] + 1;
@@ -116,8 +116,8 @@ public class Eliminasi {
             while (j < i) {
                 // matrixHasil = new Matrix(sortMatrix(matrixHasil));
                 // matrixHasil.displayMatrix();
-                System.out.println();
-                System.out.println(lenght[i] + ' ' + lenght[j]);
+                // System.out.println();
+                // System.out.println(lenght[i] + ' ' + lenght[j]);
                 if (lenght[i] == lenght[j]) {
                     if (lenght[i] < matrixHasil.getColEff()) matrixHasil.plusMinusRow(i, j, 1, matrixHasil.getElement(i, lenght[i]), false);
                     lenght[i] = lenght[i] + 1;
