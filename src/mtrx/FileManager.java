@@ -243,18 +243,20 @@ public class FileManager {
                 }
                 fileWriter.newLine();
 
-
+                
                 fileWriter.write("Bentuk regresi dari hasil penyelesaian SPL diatas ialah");
                 fileWriter.newLine();
                 fileWriter.write("y = ");
                
                 for(i=0; i <solusi.length; i++){
                     if (solusi[i]> 0){
-                        fileWriter.write(String.valueOf( " + " + (solusi[i]) +"x" + (i+1)));
+                        if (i==0) fileWriter.write(String.valueOf((solusi[i])));
+                        else fileWriter.write(String.valueOf( " + " + (solusi[i]) +"x" + (i)));
                         
                     }
                     else if (solusi[i] < 0){
-                        fileWriter.write(String.valueOf((solusi[i]) +"x" + (i+1)));
+                        if (i==0) fileWriter.write(String.valueOf((solusi[i])));
+                        else fileWriter.write(String.valueOf((solusi[i]) +"x" + (i)));
                         
                     }
                     
