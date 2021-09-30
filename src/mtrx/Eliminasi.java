@@ -186,8 +186,8 @@ public class Eliminasi {
         for (i = 0; i < matrixHasil.getRowEff(); i++) {
             for (j = 0; j < matrixHasil.getColEff(); j++) {
                 tempMatrix = new Matrix(matrix);
-                tempMatrix.deleteCol(0);
-                tempMatrix.deleteRow(0);
+                tempMatrix.deleteCol(j);
+                tempMatrix.deleteRow(i);
                 matrixHasil.setElement(i, j, ((i + j) % 2 == 0 ? 1 : -1) * determinant.detKofaktor(tempMatrix));
             }
         }
