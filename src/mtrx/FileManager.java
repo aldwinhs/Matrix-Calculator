@@ -59,6 +59,7 @@ public class FileManager {
 
         if (pilihan == 1){
             try{
+                System.out.print("Ketikkan Nama File : ");
                 String fileName = scan.next();
                 BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt"));
                 int i,j;
@@ -88,6 +89,7 @@ public class FileManager {
 
         if (pilihan == 1){
             try{
+                System.out.print("Ketikkan Nama File : ");
                 String fileName = scan.next();
                 BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
                 int i;
@@ -118,6 +120,7 @@ public class FileManager {
 
         if (pilihan == 1){
             try{
+                System.out.print("Ketikkan Nama File : ");
                 String fileName = scan.next();
                 BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
                     fileWriter.write(pesan);
@@ -142,6 +145,7 @@ public class FileManager {
 
         if (pilihan == 1){
             try{
+                System.out.print("Ketikkan Nama File : ");
                 String fileName = scan.next();
                 BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
                 int i;
@@ -170,6 +174,7 @@ public class FileManager {
 
         if (pilihan == 1){
             try{
+                System.out.print("Ketikkan Nama File : ");
                 String fileName = scan.next();
                 BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
                 int i,j;
@@ -219,7 +224,7 @@ public class FileManager {
         }
     }
 
-    public void writeRegresi (double[] solusi, double [] taksiran, double[] hasilTaksiran, Matrix matriks){
+    public void writeRegresi (double[] solusi, double [] taksiran, double hasilTaksiran, Matrix matriks){
         int pilihan;
         System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
         System.out.println("(1 = Iya atau 0 = Tidak)");
@@ -227,6 +232,7 @@ public class FileManager {
 
         if (pilihan == 1){
             try{
+                System.out.print("Ketikkan Nama File : ");
                 String fileName = scan.next();
                 BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
                 
@@ -262,11 +268,9 @@ public class FileManager {
                     
                 }
                 fileWriter.newLine();
-                fileWriter.write("Nilai taksiran : ");
-                for(i=0; i <solusi.length; i++){
-                    fileWriter.write(String.valueOf(("y" + "(" +taksiran[i]+") = " + hasilTaksiran[i])));
-                    fileWriter.newLine();
-                }
+                fileWriter.write(String.valueOf("Nilai taksiran : " + hasilTaksiran));
+                fileWriter.newLine();
+                
                 fileWriter.flush();
                 fileWriter.close();
                 
