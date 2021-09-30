@@ -543,17 +543,15 @@ public class MainClass {
 
         int NTaksiran,i;
         System.out.println("");
-        System.out.print("Masukkan N jumlah taksiran : ");
-        NTaksiran = scan.nextInt();
+        NTaksiran = solution.length-1;
         double[] taksiran = new double[NTaksiran];
         for (i=0; i<NTaksiran; i++){
+            System.out.print("Masukan x"+(i+1)+": ");
             taksiran[i] = scan.nextDouble();
         }
-        double[] hasilTaksir = new double[NTaksiran];
-        for (i=0; i<NTaksiran; i++){
-            hasilTaksir[i] = hasilRegresi.TaksiranRegresi(solution, taksiran[i]);
-            System.out.println("F(" +taksiran[i]+") = " + hasilTaksir[i]);
-        }
+        double hasilTaksir;
+        hasilTaksir = hasilRegresi.TaksiranRegresi(solution, taksiran);
+        System.out.println("F(x) = " + hasilTaksir);
 
         InputFile.writeRegresi(solution, taksiran, hasilTaksir, Regres);
 
