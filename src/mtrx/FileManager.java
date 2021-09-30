@@ -189,20 +189,21 @@ public class FileManager {
                 fileWriter.newLine();
                 fileWriter.write("P(x) = ");
                 for ( i=0; i< solusi.length; i++){
-                    if (i==0) System.out.print(solusi[i]);
-        
-                    if (solusi[i] > 0){
-                        if (i==1) System.out.print(" + " +  solusi[i] + "x" +i);
-                        else System.out.print(" + " + solusi[i] + "x^" +i);
-                    }
+                    if (i==0) fileWriter.write(String.valueOf(solusi[i]));
                     else{
-                        if (i==1) System.out.print(solusi[i] + "x" +i);
-                        else System.out.print(solusi[i] + "x^" +i);
-                    }
+                        if (solusi[i] > 0){
+                            if (i==1) fileWriter.write (String.valueOf(" + " +  solusi[i] + "x"));
+                            else fileWriter.write(String.valueOf(" + " + solusi[i] + "x^" +i));
+                        }
+                        else{
+                            if (i==1) fileWriter.write(String.valueOf(solusi[i] + "x"));
+                            else fileWriter.write(String.valueOf(solusi[i] + "x^" +i));
+                        }
+                    }    
                 }
                 fileWriter.newLine();
                 fileWriter.write("Nilai taksiran : ");
-                for(i=0; i <solusi.length; i++){
+                for(i=0; i <taksiran.length; i++){
 
                     fileWriter.write(String.valueOf(("P" + solusi.length +"(" +taksiran[i]+") = " + hasilTaksiran[i])));
                     fileWriter.newLine();
