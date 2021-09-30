@@ -187,8 +187,8 @@ public class MainClass {
                     for (int i = 0; i<solution.length; i++){
                         System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
                         System.out.print("\n");
-                    InputFile.writeDoubleFile(solution);    
                     }
+                    InputFile.writeDoubleFile(solution);    
                 }
         }
             else if (option==3){
