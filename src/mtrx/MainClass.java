@@ -13,38 +13,38 @@ public class MainClass {
     public static Regresi hasilRegresi;
     public static SPL hasilSPL;
     public static int option;
-    public static Matrix InputMatrix;
-    public static Matrix MatrixUji;
-    Scanner scan = new Scanner(System.in);
+    public Matrix InputMatrix;
+    public Matrix MatrixUji;
+    public static Scanner scan = new Scanner(System.in);
 
-    public int cekSolusi(Matrix matriks){
+    public int cekSolusi(Matrix matriks) {
         int i;
         int kondisi;
 
-        for (i = matriks.getLastIdxRow(); i >= 0; i--){
+        for (i = matriks.getLastIdxRow(); i >= 0; i--) {
             if (matriks.rowIsZero(i)) matriks.deleteRow(i);
         }
 
         Matrix temp = new Matrix(matriks);
         temp.deleteCol(matriks.getLastIdxCol());
         //tidak ada solusi
-        if (temp.rowIsZero(temp.getLastIdxRow()) && matriks.getElement(matriks.getLastIdxRow(), matriks.getLastIdxCol()) != 0){
+        if (temp.rowIsZero(temp.getLastIdxRow()) && matriks.getElement(matriks.getLastIdxRow(), matriks.getLastIdxCol()) != 0) {
             kondisi = 1;
         }
 
         //solusi banyak
-        else if (matriks.getLastIdxCol()!=matriks.getRowEff()){
-            kondisi =2;
+        else if (matriks.getLastIdxCol()!=matriks.getRowEff()) {
+            kondisi = 2;
         }
 
         //solusi unik
-        else kondisi =3;
+        else kondisi = 3;
 
         return kondisi;
     } 
 
 
-    public void Menu(){
+    public void Menu() {
 
         System.out.println("============================");
         System.out.println("MENU");
@@ -58,20 +58,20 @@ public class MainClass {
         System.out.print("Masukkan pilihan anda: ");
         option = scan.nextInt();
 
-        while (option < 1 | option > 6){
+        while (option < 1 | option > 6) {
             System.out.print("Masukan tidak valid!\n Masukkan pilihan di antara 1-6: ");
             option = scan.nextInt();
         
         if (option==1) MenuSPL();
         else if (option==2) MenuDet();
         else if (option ==3) MenuInverse();
-        else if (option == 4) MenutInter();
+        else if (option == 4) MenuInter();
         else if (option ==5) MenuRegresi();
         else System.out.println("============================");
         }
     }
     
-    public void MenuSPL(){
+    public void MenuSPL() {
         
         System.out.println("");
             System.out.println("============================");
@@ -95,52 +95,43 @@ public class MainClass {
                 option = scan.nextInt();
 
                 //Input dari Keyboard
-                if(option == 1){
+                if (option == 1) {
                     System.out.println("Masukkan matriks augmented");
                     InputMatrix.readMatrix();
-                }    
-                else if (option == 2){
+                } else if (option == 2) {
                     System.out.println("Masukkan nama File");
                     InputFile.readFile();
                     InputMatrix = new Matrix(InputFile.matriksForm);
                 }
-                    if (cekSolusi(hasilEliminasi.getMatrixEselonBaris(InputMatrix)) ==1){
-                        System.out.println("SPL tidak memiliki solusi!");
+                
+                if (cekSolusi(hasilEliminasi.getMatrixEselonBaris(InputMatrix)) ==1) {
+                    System.out.println("SPL tidak memiliki solusi!");
+                } else if (cekSolusi(hasilEliminasi.getMatrixEselonBaris(InputMatrix)) ==2) {
+                    String[] solution = hasilSPL.solusiBanyak(hasilEliminasi.getMatrixEselonBaris(InputMatrix));
+                    for (int i = 0; i<solution.length; i++) {
+                        System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
+                        System.out.print("\n");
                     }
-
-                    else if (cekSolusi(hasilEliminasi.getMatrixEselonBaris(InputMatrix)) ==2){
-                        String[] solution = hasilSPL.solusiBanyak(hasilEliminasi.getMatrixEselonBaris(InputMatrix));
-                        for (int i = 0; i<solution.length; i++){
-                            System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
-                            System.out.print("\n");
-                        }
+                } else {
+                    solution = hasilSPL.BackwardSubstitution(hasilEliminasi.getMatrixEselonBaris(InputMatrix));
+                    for (int i = 0; i<solution.length; i++) {
+                        System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
+                        System.out.print("\n");
                     }
-
-                    else {
-                        solution = hasilSPL.BackwardSubstitution(hasilEliminasi.getMatrixEselonBaris(InputMatrix));
-                        for (int i = 0; i<solution.length; i++){
-                            System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
-                            System.out.print("\n");
-                        }
-                    }
-                    InputFile.writeDoubleFile(solution);
                 }
-            else if (option==2){
+                InputFile.writeDoubleFile(solution);
+            } else if (option==2) {
                     System.out.println("Masukkan matriks augmented");
                     InputMatrix.readMatrix();
                     if (cekSolusi(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix)) ==1){
                         System.out.println("SPL tidak memiliki solusi!");
-                    }
-
-                    else if (cekSolusi(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix)) ==2){
+                    } else if (cekSolusi(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix)) ==2){
                         String[] solution = hasilSPL.solusiBanyak(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix));
                         for (int i = 0; i<solution.length; i++){
                             System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
                             System.out.print("\n");
                         }
-                    }
-
-                    else {
+                    } else {
                         solution = hasilSPL.BackwardSubstitution(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix));
                         for (int i = 0; i<solution.length; i++){
                             System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
@@ -148,19 +139,27 @@ public class MainClass {
                         }
                     }
                     InputFile.writeDoubleFile(solution);
-                }
+            }
 
-                else if (option==3){
+            else if (option==3){
                     if (InputMatrix.getLastIdxRow() == InputMatrix.getColEff()){
                         
                     }
                 }
-                }
+                
             }
 
     }
 
+    public void MenuDet() {}
 
+    public void MenuInverse() {}
+
+    public void MenuInter() {}
+
+    public void MenuRegresi() {}
+
+    public void NewLine() {}
 
     public static void main(String[] args){
 
@@ -171,7 +170,7 @@ public class MainClass {
         //FileManager InputFile= new FileManager();
         
         
-        }
+        
 
         //SPL
         if (option ==1){
