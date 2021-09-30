@@ -162,8 +162,7 @@ public class FileManager {
 
     }
         
-
-    public void writeInterpolasi(double[] solusi, double[] taksiran, double[] hasilTaksiran, Matrix matriks){
+    public void writeInterpolasi(double[] solusi, double[] taksiran, double[] hasilTaksiran){
         int pilihan;
         System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
         System.out.println("(1 = Iya atau 0 = Tidak)");
@@ -173,12 +172,10 @@ public class FileManager {
             try{
                 String fileName = scan.next();
                 BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
-                int i;
-
-                fileWriter.write("Diperoleh SPL untuk mencari Regresi dalam bentuk matrix sebagai berikut: ");
-                fileWriter.newLine();
                 int i,j;
-                
+                /*
+                fileWriter.write("Diperoleh SPL untuk mencari Persamaan Interpolasi dalam bentuk matrix sebagai berikut: ");
+                fileWriter.newLine();
                 for(i=0; i <matriks.row; i++){
                     for( j =0; j<matriks.col; j++){
                         if (j != matriks.getLastIdxCol()) fileWriter.write(String.valueOf(matriks.getElement(i, j))+ " ");
@@ -186,8 +183,25 @@ public class FileManager {
                     }
                     fileWriter.newLine();
                 }
+                */
                 fileWriter.newLine();
-
+                fileWriter.write("Bentuk persamaan polinom dari hasil penyelesaian SPL diatas ialah");
+                fileWriter.newLine();
+                fileWriter.write("P(x) = ");
+                for ( i=0; i< solusi.length; i++){
+                    if (i==0) System.out.print(solusi[i]);
+        
+                    if (solusi[i] > 0){
+                        if (i==1) System.out.print(" + " +  solusi[i] + "x" +i);
+                        else System.out.print(" + " + solusi[i] + "x^" +i);
+                    }
+                    else{
+                        if (i==1) System.out.print(solusi[i] + "x" +i);
+                        else System.out.print(solusi[i] + "x^" +i);
+                    }
+                }
+                fileWriter.newLine();
+                fileWriter.write("Nilai taksiran : ");
                 for(i=0; i <solusi.length; i++){
 
                     fileWriter.write(String.valueOf(("P" + solusi.length +"(" +taksiran[i]+") = " + hasilTaksiran[i])));
@@ -236,11 +250,11 @@ public class FileManager {
                 for(i=0; i <solusi.length; i++){
                     if (solusi[i]> 0){
                         fileWriter.write(String.valueOf( " + " + (solusi[i]) +"x" + (i+1)));
-                        fileWriter.newLine();
+                        
                     }
                     else if (solusi[i] < 0){
                         fileWriter.write(String.valueOf((solusi[i]) +"x" + (i+1)));
-                        fileWriter.newLine();
+                        
                     }
                     
                 }

@@ -17,7 +17,6 @@ public class MainClass {
     public static SPL hasilSPL = new SPL();
     public static int option;
     public static Matrix InputMatrix = new Matrix();
-    public Matrix MatrixUji;
     public static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args){
@@ -28,19 +27,23 @@ public class MainClass {
         int i;
         int kondisi;
 
-        for (i = matriks.getLastIdxRow(); i >= 0; i--) {
-            if (matriks.rowIsZero(i)) matriks.deleteRow(i);
+        Matrix ujiMatrix = new Matrix(matriks);
+        for (i = ujiMatrix.getLastIdxRow(); i >= 0; i--) {
+            if (ujiMatrix.rowIsZero(i)) ujiMatrix.deleteRow(i);
         }
-
-        Matrix temp = new Matrix(matriks);
-        temp.deleteCol(matriks.getLastIdxCol());
+        //ujiMatrix.displayMatrix();
+        
+        
+        Matrix temp = new Matrix(ujiMatrix);
+        temp.deleteCol(ujiMatrix.getLastIdxCol());
+        temp.displayMatrix();
         //tidak ada solusi
-        if (temp.rowIsZero(temp.getLastIdxRow()) && matriks.getElement(matriks.getLastIdxRow(), matriks.getLastIdxCol()) != 0) {
+        if (temp.rowIsZero(temp.getLastIdxRow()) && ujiMatrix.getElement(ujiMatrix.getLastIdxRow(), ujiMatrix.getLastIdxCol()) != 0) {
             kondisi = 1;
         }
 
         //solusi banyak
-        else if (matriks.getLastIdxCol()!=matriks.getRowEff()) {
+        else if (ujiMatrix.getLastIdxCol()!=ujiMatrix.getRowEff()) {
             kondisi = 2;
         }
 
@@ -110,20 +113,24 @@ public class MainClass {
                     InputFile.readFile();
                     InputMatrix = new Matrix(InputFile.matriksForm);
                 }
-
+                //tes
                 Matrix tempMatrix = hasilEliminasi.getMatrixEselonBaris(InputMatrix);
-                if (cekSolusi(tempMatrix) ==1) {
+                tempMatrix.displayMatrix();
+                int validasiSolusi = cekSolusi(tempMatrix);
+                if ( validasiSolusi ==1) {
                     System.out.println("SPL tidak memiliki solusi!");
                     InputFile.writeString("SPL tidak memiliki solusi!");
 
-                } else if (cekSolusi(hasilEliminasi.getMatrixEselonBaris(InputMatrix)) ==2) {
+                } 
+                else if (validasiSolusi ==2) {
                     String[] solution = hasilSPL.solusiBanyak(hasilEliminasi.getMatrixEselonBaris(InputMatrix));
                     for (int i = 0; i<solution.length; i++) {
                         System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
                         System.out.print("\n");
                     }
                     InputFile.writeStringFile(solution);
-                } else {
+                } 
+                else {
                     double[] solution = hasilSPL.BackwardSubstitution(hasilEliminasi.getMatrixEselonBaris(InputMatrix));
                     for (int i = 0; i<solution.length; i++) {
                         System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
@@ -395,8 +402,20 @@ public class MainClass {
         }
         Matrix Regres = new Matrix(hasilRegresi.NormalEstimation(InputMatrix, InputMatrix.getRowEff(), InputMatrix.getLastIdxCol()));
         double[] solution = hasilSPL.BackwardSubstitution(hasilEliminasi.getMatrixEselonBarisTereduksi(Regres));
-        
-        
+        System.out.println("Diperoleh SPL untuk mencari Regresi dalam bentuk matrix sebagai berikut: ");
+        Regres.displayMatrix();
+        System.out.println("Bentuk regresi dari hasil penyelesaian SPL diatas ialah");
+        for(int i=0; i <solution.length; i++){
+            if (solution[i]> 0){
+                System.out.print(String.valueOf( " + " + (solution[i]) +"x" + (i+1)));
+            }
+            else if (solution[i] < 0){
+                System.out.print(String.valueOf((solution[i]) +"x" + (i+1)));
+            }
+            
+        }
+
+
 
         int NTaksiran,i;
         System.out.println("");
@@ -412,7 +431,7 @@ public class MainClass {
             System.out.println("F(" +taksiran[i]+") = " + hasilTaksir[i]);
         }
 
-        InputFile.writeInterpolasi(solution, taksiran, hasilTaksir);
+        InputFile.writeRegresi(solution, taksiran, hasilTaksir, Regres);
 
 
     }
