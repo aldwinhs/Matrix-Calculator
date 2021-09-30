@@ -107,6 +107,33 @@ public class FileManager {
         
 
     }
+
+    public void writeInterpolasi(double[] solusi, double[] taksiran, double[] hasilTaksiran){
+        int pilihan;
+        System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
+        System.out.println("(1 = Iya atau 0 = Tidak)");
+        pilihan = scan.nextInt();
+
+        if (pilihan == 1){
+            try{
+                String fileName = scan.next();
+                BufferedWriter fileWriter =  new BufferedWriter(new FileWriter("test/"+ fileName + ".txt", true));
+                int i;
+                for(i=0; i <solusi.length; i++){
+
+                    fileWriter.write(String.valueOf(("P" + solusi.length +"(" +taksiran[i]+") = " + hasilTaksiran[i])));
+                    fileWriter.newLine();
+                }
+                fileWriter.flush();
+                fileWriter.close();
+                
+            }
+            catch(Exception e){
+                System.out.println("Error");
+                e.printStackTrace();
+            }
+        }
+    }
         
 
 }
