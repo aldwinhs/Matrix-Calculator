@@ -259,7 +259,7 @@ public class Matrix {
         int j = 0;
         boolean flag = true;
         while (flag && j<this.col-1) {
-            if (this.content[row-1][j] != 0) flag = false;
+            if (this.content[row][j] != 0) flag = false;
             else j++; 
         }
         return flag;
