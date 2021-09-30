@@ -110,7 +110,7 @@ public class MainClass {
                     System.out.println("Masukkan matriks augmented");
                     InputMatrix.readMatrix();
                 } else if (option == 2) {
-                    System.out.println("Masukkan nama File");
+                    System.out.print("Masukkan nama File: ");
                     InputFile.readFile();
                     InputMatrix = new Matrix(InputFile.matriksForm);
                 }
@@ -154,12 +154,14 @@ public class MainClass {
                 System.out.print("Masukkan pilihan anda: ");
                 option = scan.nextInt();
 
+                
+                Matrix InputMatrix = new Matrix();
                 //Input dari Keyboard
                 if (option == 1) {
                     System.out.println("Masukkan matriks augmented");
                     InputMatrix.readMatrix();
                 } else if (option == 2) {
-                    System.out.println("Masukkan nama File");
+                    System.out.print("Masukkan nama File: ");
                     InputFile.readFile();
                     InputMatrix = new Matrix(InputFile.matriksForm);
                 }
@@ -177,8 +179,8 @@ public class MainClass {
                     for (int i = 0; i<solution.length; i++){
                         System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
                         System.out.print("\n");
-                    InputFile.writeStringFile(solution);
                     }
+                    InputFile.writeStringFile(solution);
                 } 
                 else {
                     double[] solution = hasilSPL.BackwardSubstitution(hasilEliminasi.getMatrixEselonBarisTereduksi(InputMatrix));
@@ -205,7 +207,7 @@ public class MainClass {
                     System.out.println("Masukkan matriks augmented");
                     InputMatrix.readMatrix();
                 } else if (option == 2) {
-                    System.out.println("Masukkan nama File");
+                    System.out.print("Masukkan nama File: ");
                     InputFile.readFile();
                     InputMatrix = new Matrix(InputFile.matriksForm);
                 }
@@ -246,7 +248,7 @@ public class MainClass {
                     System.out.println("Masukkan matriks augmented");
                     InputMatrix.readMatrix();
                 } else if (option == 2) {
-                    System.out.println("Masukkan nama File");
+                    System.out.print("Masukkan nama File: ");
                     InputFile.readFile();
                     InputMatrix = new Matrix(InputFile.matriksForm);
                 }
@@ -295,7 +297,7 @@ public class MainClass {
                 System.out.println("Masukkan matriks augmented");
                 InputMatrix.readMatrix();
             } else if (option == 2) {
-                System.out.println("Masukkan nama File");
+                System.out.print("Masukkan nama File: ");
                 InputFile.readFile();
                 InputMatrix = new Matrix(InputFile.matriksForm);
             }
@@ -327,7 +329,7 @@ public class MainClass {
                 System.out.println("Masukkan matriks augmented");
                 InputMatrix.readMatrix();
             } else if (option == 2) {
-                System.out.println("Masukkan nama File");
+                System.out.print("Masukkan nama File: ");
                 InputFile.readFile();
                 InputMatrix = new Matrix(InputFile.matriksForm);
             }
@@ -371,7 +373,7 @@ public class MainClass {
                 InputMatrix.readMatrix();
             }
             else if (option == 2) {
-                System.out.println("Masukkan nama File");
+                System.out.print("Masukkan nama File: ");
                 InputFile.readFile();
                 InputMatrix = new Matrix(InputFile.matriksForm);
             }
@@ -413,7 +415,7 @@ public class MainClass {
                 InputMatrix.readMatrix();
             }
             else if (option == 2) {
-                System.out.println("Masukkan nama File");
+                System.out.print("Masukkan nama File: ");
                 InputFile.readFile();
                 InputMatrix = new Matrix(InputFile.matriksForm);
             }
@@ -460,7 +462,7 @@ public class MainClass {
             InputMatrix.readMatrix();
         }
         else if (option == 2) {
-            System.out.println("Masukkan nama File");
+            System.out.print("Masukkan nama File: ");
             InputFile.readFile();
             InputMatrix = new Matrix(InputFile.matriksForm);
         }
@@ -514,7 +516,7 @@ public class MainClass {
             InputMatrix.readMatrix();
         }
         else if (option == 2) {
-            System.out.println("Masukkan nama File");
+            System.out.print("Masukkan nama File: ");
             InputFile.readFile();
             InputMatrix = new Matrix(InputFile.matriksForm);
         }
