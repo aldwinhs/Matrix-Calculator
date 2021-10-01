@@ -18,7 +18,7 @@
 * Terminal
 <br> 1. Open CMD ./src
 <br> 2. Ketikkan javac -d ../bin ./mtrx/*.java
-<br> 3. Ketikkan java -cp ../bin Main
+<br> 3. Ketikkan java -cp ../bin MainClass
       
 
 
