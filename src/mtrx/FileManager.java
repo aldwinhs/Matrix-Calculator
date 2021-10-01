@@ -53,8 +53,8 @@ public class FileManager {
 
     public void writeMatrixFile(Matrix matriks){
         int pilihan;
-        System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
-        System.out.println("(1 = Iya atau 0 = Tidak)");
+        System.out.print("Apakah Anda ingin Menyimpan jawaban ke File? (1 jika iya /0 jika tidak) :  ");
+       
         pilihan = scan.nextInt();
 
         if (pilihan == 1){
@@ -83,10 +83,10 @@ public class FileManager {
 
     public void writeDoubleFile(double[] solusi){
         int pilihan;
-        System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
-        System.out.println("(1 = Iya atau 0 = Tidak)");
+        System.out.print("Apakah Anda ingin Menyimpan jawaban ke File? (1 jika iya /0 jika tidak) :  ");
+       
         pilihan = scan.nextInt();
-
+        
         if (pilihan == 1){
             try{
                 System.out.print("Ketikkan Nama File : ");
@@ -114,10 +114,10 @@ public class FileManager {
 
     public void writeString(String pesan){
         int pilihan;
-        System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
-        System.out.println("(1 = Iya atau 0 = Tidak)");
+        System.out.print("Apakah Anda ingin Menyimpan jawaban ke File? (1 jika iya /0 jika tidak) :  ");
+       
         pilihan = scan.nextInt();
-
+        
         if (pilihan == 1){
             try{
                 System.out.print("Ketikkan Nama File : ");
@@ -139,10 +139,10 @@ public class FileManager {
 
     public void writeStringFile(String[] solusi){
         int pilihan;
-        System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
-        System.out.println("(1 = Iya atau 0 = Tidak)");
+        System.out.print("Apakah Anda ingin Menyimpan jawaban ke File? (1 jika iya /0 jika tidak) :  ");
+       
         pilihan = scan.nextInt();
-
+        
         if (pilihan == 1){
             try{
                 System.out.print("Ketikkan Nama File : ");
@@ -168,8 +168,8 @@ public class FileManager {
         
     public void writeInterpolasi(double[] solusi, double[] taksiran, double[] hasilTaksiran){
         int pilihan;
-        System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
-        System.out.println("(1 = Iya atau 0 = Tidak)");
+        System.out.print("Apakah Anda ingin Menyimpan jawaban ke File? (1 jika iya /0 jika tidak) :  ");
+       
         pilihan = scan.nextInt();
 
         if (pilihan == 1){
@@ -226,8 +226,8 @@ public class FileManager {
 
     public void writeRegresi (double[] solusi, double [] taksiran, double hasilTaksiran, Matrix matriks){
         int pilihan;
-        System.out.println("Apakah Anda ingin Menyimpan jawaban ke File? ");
-        System.out.println("(1 = Iya atau 0 = Tidak)");
+        System.out.print("Apakah Anda ingin Menyimpan jawaban ke File? (1 jika iya /0 jika tidak) :  ");
+       
         pilihan = scan.nextInt();
 
         if (pilihan == 1){

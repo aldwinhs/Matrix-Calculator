@@ -81,8 +81,7 @@ public class MainClass {
     
     public static void MenuSPL() {
             System.out.println("");
-            System.out.println("============MENU Sistem Persamaan Linier============");
-           
+            System.out.println("============Menu Sistem Persamaan Linier============");
             System.out.println("1. Metode eliminasi Gauss");
             System.out.println("2. Metode eliminasi Gauss-Jordan");
             System.out.println("3. Metode matriks balikan");
@@ -114,6 +113,8 @@ public class MainClass {
                     InputMatrix = new Matrix(InputFile.matriksForm);
                 }
                 else Menu();
+
+
                 Matrix tempMatrix = hasilEliminasi.getMatrixEselonBaris(InputMatrix);
                 System.out.println("==============Matrix Eselon Baris==============");
                 tempMatrix.displayMatrix();
@@ -122,7 +123,6 @@ public class MainClass {
                 if ( validasiSolusi ==1) {
                     System.out.println("SPL tidak memiliki solusi!");
                     InputFile.writeString("SPL tidak memiliki solusi!");
-
                 } 
                 else if (validasiSolusi ==2) {
                     String[] solution = hasilSPL.solusiBanyak(hasilEliminasi.getMatrixEselonBaris(InputMatrix));
@@ -203,7 +203,7 @@ public class MainClass {
 
                 //Input dari Keyboard atau File
                 if (option == 1) {
-                    System.out.println("Masukkan matriks augmented");
+                    System.out.println("Masukkan matriks augmented N x (N+1)");
                     InputMatrix.readMatrix();
                 } else if (option == 2) {
                     System.out.print("Masukkan nama File: ");
@@ -218,8 +218,8 @@ public class MainClass {
                         for (int i = 0; i<solution.length; i++){
                         System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
                         System.out.print("\n");
-                        InputFile.writeDoubleFile(solution);
                         }
+                        InputFile.writeDoubleFile(solution);
                     }
                     else {
                         //Determinan = 0
@@ -244,7 +244,7 @@ public class MainClass {
 
                 //Input dari Keyboard atau File
                 if (option == 1) {
-                    System.out.println("Masukkan matriks augmented");
+                    System.out.println("Masukkan matriks augmented N x (N+1)");
                     InputMatrix.readMatrix();
                 } else if (option == 2) {
                     System.out.print("Masukkan nama File: ");
@@ -272,8 +272,7 @@ public class MainClass {
 
     public static void MenuDet() {
         System.out.println("");
-        System.out.println("============================");
-        System.out.println("MENU Determinan");
+        System.out.println("==============Menu Determinan==============");
         System.out.println("1. Metode reduksi baris");
         System.out.println("2. Metode kofaktor");
         System.out.println("3. Keluar ke Main Menu");
@@ -293,7 +292,7 @@ public class MainClass {
 
             //Input dari Keyboard
             if (option == 1) {
-                System.out.println("Masukkan matriks augmented");
+                System.out.println("Masukkan matriks augmented NxN");
                 InputMatrix.readMatrix();
             } else if (option == 2) {
                 System.out.print("Masukkan nama File: ");
@@ -325,7 +324,7 @@ public class MainClass {
 
             //Input dari Keyboard
             if (option == 1) {
-                System.out.println("Masukkan matriks augmented");
+                System.out.println("Masukkan matriks augmented NxN");
                 InputMatrix.readMatrix();
             } else if (option == 2) {
                 System.out.print("Masukkan nama File: ");
@@ -348,8 +347,7 @@ public class MainClass {
 
     public static void MenuInverse() {
         System.out.println("");
-        System.out.println("============================");
-        System.out.println("MENU Sistem Persamaan Linier");
+        System.out.println("==============Menu Balikan Matriks==============");
         System.out.println("1. Metode Eliminasi Gauss Jordan");
         System.out.println("2. Metode Kofaktor");
         System.out.println("3. Keluar ke Main Menu");
@@ -446,7 +444,7 @@ public class MainClass {
 
     public static void MenuInterpolasi() {
         System.out.println("");
-        System.out.println("============================");
+        System.out.println("==============Menu Interpolasi Polinom==============");
         System.out.println("Pilih jenis masukan");
         System.out.println("1. Masukan dari keyboard");
         System.out.println("2. Masukan dari file");
@@ -467,6 +465,7 @@ public class MainClass {
         }
         else Menu();
         double[] solution = hasilInterpolasi.SolveInterpolasi(InputMatrix, InputMatrix.getRowEff());
+        System.out.println("============================");
         System.out.print("Polinom Interpolasi yang melalui semua titik adalah p" + InputMatrix.getLastIdxRow() +"(x) =");
         for (int i=0; i< solution.length; i++){
             if (i==0) System.out.print(solution[i]);
@@ -481,6 +480,8 @@ public class MainClass {
                 }
             }   
         }
+        System.out.println("");
+        System.out.println("============================");
         int NTaksiran,i;
         System.out.println("");
         System.out.print("Masukkan N jumlah taksiran : ");
@@ -500,7 +501,7 @@ public class MainClass {
 
     public static void MenuRegresi() {
         System.out.println("");
-        System.out.println("============================");
+        System.out.println("============Menu Regresi Linier============");
         System.out.println("Pilih jenis masukan");
         System.out.println("1. Masukan dari keyboard");
         System.out.println("2. Masukan dari file");
@@ -527,6 +528,7 @@ public class MainClass {
         Regres.displayMatrix();
         System.out.println("Bentuk regresi dari hasil penyelesaian SPL diatas ialah");
         System.out.print("y = ");
+        System.out.println("============================");
         for(int i=0; i <solution.length; i++){
             if (solution[i]> 0){
                 if (i==0) System.out.print(String.valueOf((solution[i])));
@@ -541,7 +543,7 @@ public class MainClass {
         }
 
 
-
+        System.out.println("============================");
         int NTaksiran,i;
         System.out.println("");
         NTaksiran = solution.length-1;
