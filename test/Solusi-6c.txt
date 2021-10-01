@@ -1,0 +1,4 @@
+
+Bentuk persamaan polinom dari hasil penyelesaian SPL diatas ialah
+P(x) = 0.30719999999999936 + 0.32173333333333387x-0.09020000000000072x^2-0.0017333333333330314x^3
+Nilai taksiran : P4(1.0) = 0.5369999999999995

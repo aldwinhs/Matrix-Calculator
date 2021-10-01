@@ -213,7 +213,7 @@ public class MainClass {
                 }
                 else Menu();
                 
-                if (InputMatrix.getLastIdxRow() == InputMatrix.getColEff()){
+                if (InputMatrix.getLastIdxCol() == InputMatrix.getRowEff()){
                     if (hasilDeterminan.detKofaktor(InputMatrix) != 0){
                         double[] solution = hasilSPL.inverseMethod(InputMatrix);
                         for (int i = 0; i<solution.length; i++){
@@ -253,7 +253,7 @@ public class MainClass {
                     InputMatrix = new Matrix(InputFile.matriksForm);
                 }
                 else Menu();
-                if (InputMatrix.getLastIdxRow() == InputMatrix.getColEff()){
+                if (InputMatrix.getLastIdxCol() == InputMatrix.getRowEff()){
                     double[] solution = hasilSPL.cramerMethod(InputMatrix);
                     for (int i = 0; i<solution.length; i++){
                         System.out.print("x"+ (i+1) + " : "+ solution[i]) ;
