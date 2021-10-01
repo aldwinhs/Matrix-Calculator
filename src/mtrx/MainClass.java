@@ -54,8 +54,7 @@ public class MainClass {
 
     public static void Menu() {
 
-        System.out.println("============================");
-        System.out.println("MENU");
+        System.out.println("==============MENU==============");
         System.out.println("1. Sistem Persamaan Linier");
         System.out.println("2. Determinan");
         System.out.println("3. Matriks balikan");
@@ -82,8 +81,8 @@ public class MainClass {
     
     public static void MenuSPL() {
             System.out.println("");
-            System.out.println("============================");
-            System.out.println("MENU Sistem Persamaan Linier");
+            System.out.println("============MENU Sistem Persamaan Linier============");
+           
             System.out.println("1. Metode eliminasi Gauss");
             System.out.println("2. Metode eliminasi Gauss-Jordan");
             System.out.println("3. Metode matriks balikan");

@@ -10,6 +10,7 @@ public class Interpolasi {
         
         int i,j,k;
         SPL solusi = new SPL();
+        Eliminasi MatrixReduksi = new Eliminasi();
 
         //Buat persamaan polinom dalam bentuk augmented matrix
         Matrix PoliMatrix = new Matrix(N,N+1);
@@ -24,7 +25,8 @@ public class Interpolasi {
         }
         PoliMatrix.displayMatrix();
         //Selesaikan SPL
-        return (solusi.inverseMethod(PoliMatrix));
+        
+        return (solusi.BackwardSubstitution(MatrixReduksi.getMatrixEselonBarisTereduksi(PoliMatrix)));
        
         
     }

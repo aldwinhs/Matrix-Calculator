@@ -163,6 +163,16 @@ public class Eliminasi {
 
 
     public Matrix inverseGaussJordanMethod(Matrix matrix){
+
+        int i;
+        Matrix matrixHasil = new Matrix(matrix);
+        matrixHasil.addIdentity();
+        matrixHasil = getMatrixEselonBarisTereduksi(matrixHasil);
+        for (i = 0; i < matrix.getColEff(); i++) {
+            matrixHasil.deleteCol(0);
+        }
+
+
         // Matrix matrixHasil = new Matrix(matrix);
         // int nRow = matrixHasil.getRowEff();
         // int nCol = matrixHasil.getColEff();
@@ -170,10 +180,11 @@ public class Eliminasi {
         // matrixHasil.addIdentity();
 
         /* KAMUS */
+        /*
         Matrix matrixHasil = new Matrix(matrix);
         int[] lenght = new int[matrix.getRowEff()];
         int i, j, k;
-        /* ALGORITMA */
+        // ALGORITMA 
         matrixHasil.addIdentity();
 
         for (i = 0; i < matrixHasil.getRowEff(); i++) {
@@ -243,8 +254,9 @@ public class Eliminasi {
         for (i = 0; i < matrix.getColEff(); i++) {
             matrixHasil.deleteCol(0);
         }
-
-        return matrixHasil;
+        */
+        
+        return (matrixHasil);
     }
 
     public Matrix inverseMinorCofactorMethod (Matrix matrix) {
