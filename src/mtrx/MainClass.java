@@ -1,5 +1,6 @@
 package mtrx;
 import java.util.Scanner;
+import java.lang.Math;
 
 
 public class MainClass {
@@ -301,8 +302,11 @@ public class MainClass {
             }
             else Menu();
             double[] solution = new double[1];
+            
             if (InputMatrix.isSquare()){
                 solution[0] = hasilDeterminan.detReduksiBaris(InputMatrix);
+                
+                if ( Math.abs(solution[0])< 0.0000000001) solution[0] =0;
                 System.out.println("Determinan dari Matriks adalah : " + solution[0]);  
                 InputFile.writeDoubleFile(solution);
             } 
