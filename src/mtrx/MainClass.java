@@ -302,7 +302,8 @@ public class MainClass {
             else Menu();
             double[] solution = new double[1];
             if (InputMatrix.isSquare()){
-                solution[0] = hasilDeterminan.detReduksiBaris(InputMatrix);  
+                solution[0] = hasilDeterminan.detReduksiBaris(InputMatrix);
+                System.out.println("Determinan dari Matriks adalah : " + solution[0]);  
                 InputFile.writeDoubleFile(solution);
             } 
             else {
@@ -335,6 +336,7 @@ public class MainClass {
             double[] solution = new double[1];
             if (InputMatrix.isSquare()){
                 solution[0] = hasilDeterminan.detKofaktor(InputMatrix);  
+                System.out.println("Determinan dari Matriks adalah : " + solution[0]);  
                 InputFile.writeDoubleFile(solution);
             } 
             else {
